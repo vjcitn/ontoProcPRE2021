@@ -5,16 +5,25 @@
 \alias{cellTypeToGenes}
 \title{utilities for approximate matching of cell type terms to GO categories and annotations}
 \usage{
-cellTypeToGO(celltypeString, ...)
+cellTypeToGO(celltypeString, gotab, ...)
 
 cellTypeToGenes(celltypeString, orgDb, cols = c("ENSEMBL", "SYMBOL"), ...)
 }
 \arguments{
-\item{celltypeString}{character atom to be used to search GO terms using 
+\item{celltypeString}{character atom to be used to search GO terms using}
+
+\item{gotab}{a data.frame with columns GO (goids) and TERM (term strings)
 \code{\link[base]{agrep}}}
 
 \item{\dots}{additional arguments to \code{\link[base]{agrep}}}
+
+\item{orgDb}{instances of orgDb}
+
+\item{cols}{columns to be retrieved in select operation}
 }
 \description{
 utilities for approximate matching of cell type terms to GO categories and annotations
+}
+\note{
+Very primitive, uses agrep to try to find relevant terms.
 }

@@ -1,14 +1,24 @@
-#' @exportClass rrdfSupport
-setClass("rrdfSupport", representation(model="ANY", world="ANY"))
-setMethod("show", "rrdfSupport", function(object) {
-  cat("rrdfSupport instance from tenXplore\n")
+#' container for RDF model and world instances as defined in redland
+#' @rdname RrdfSupport-class
+#' @aliases RrdfSupport-class
+#' @aliases show,RrdfSupport-method
+#' @aliases show
+#' @importFrom methods new show
+#' @exportClass RrdfSupport
+setClass("RrdfSupport", representation(model="ANY", world="ANY"))
+#' @rdname RrdfSupport-class
+#' @param object instance of RrdfSupport
+#' @export
+setMethod("show", "RrdfSupport", function(object) {
+  cat("RrdfSupport instance from ontoProc\n")
   cat(sprintf("there are %d class statements\n", countClasses(object)))
 })
 
-#' accessors for rrdfSupport
+#' accessors for RrdfSupport
 #' @export
 getModel = function(x) x@model
 #' @rdname getModel
+#' @param x instance of RrdfSupport
 #' @aliases getWorld
 #' @export
 getWorld = function(x) x@world
@@ -21,7 +31,7 @@ buildEFOOntSupport = function() {
  EFmodel <- new("Model", world=EFworld, EFstorage, options="")
  EFparser <- new("Parser", EFworld)
  parseFileIntoModel(EFparser, EFworld, system.file("owl/efo.owl", package="ontoProc"), EFmodel)
- new("rrdfSupport", model=EFmodel, world=EFworld)
+ new("RrdfSupport", model=EFmodel, world=EFworld)
 }
 
 #' read and model the Cell Ontology as shipped in OWL and parsed in redland
@@ -32,7 +42,7 @@ buildCellOntSupport = function() {
  CLmodel <- new("Model", world=CLworld, CLstorage, options="")
  CLparser <- new("Parser", CLworld)
  parseFileIntoModel(CLparser, CLworld, system.file("owl/cl.owl", package="ontoProc"), CLmodel)
- new("rrdfSupport", model=CLmodel, world=CLworld)
+ new("RrdfSupport", model=CLmodel, world=CLworld)
 }
 
 #

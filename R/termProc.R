@@ -1,10 +1,12 @@
 #' manage ontological data with tags and a DataFrame instance
+#' @rdname TermSet-class
 #' @importFrom Biobase selectSome
 #' @importClassesFrom S4Vectors DataFrame
 #' @importFrom S4Vectors DataFrame
 #' @exportClass TermSet
 setClass("TermSet", representation(ontoURLs="character", 
    cleanFrame="DataFrame"))
+#' @param object instance of TermSet
 setValidity("TermSet", function(object) {
    chk1 = (length(object@ontoURLs)==nrow(object@cleanFrame))
    chk2 = all(names(object@cleanFrame) %in% c("clean", "url", "parent", "qualTerms"))
@@ -14,11 +16,20 @@ setValidity("TermSet", function(object) {
    if (report == "") return(TRUE)
    return(report)
 })
-#' @exportMethod show
+#' abbreviated display for TermSet instances
+#' @rdname TermSet-class
+#' @aliases show
+#' @aliases show,TermSet-method
+#' @param object instance of TermSet
+#' @export
 setMethod("show", "TermSet", function(object) {
 cat(sprintf("TermSet for %d terms\n", length(object@ontoURLs)))
 cat(paste(selectSome(object@cleanFrame[,"clean"]), collapse=", "), "\n")
 })
+#' combine TermSet instances
+#' @param x TermSet instance
+#' @param \dots additional instances
+#' @export
 setMethod("c", "TermSet", function(x, ...) {
   if (missing(x)) args = unname(list(...))
   else args = unname(list(x, ...))
@@ -33,6 +44,7 @@ setMethod("c", "TermSet", function(x, ...) {
 })
 
 #' generate a TermSet with siblings of a given term
+#' @import redland
 #' @param urlstring a URI that serves as an rdf-schema class
 #' @param model RDF model instance as defined in redland package
 #' @param world RDF world instance as defined in redland package
@@ -119,12 +131,18 @@ children_URL = function(urlstring="<http://www.ebi.ac.uk/efo/EFO_0000787>", mode
 }
 
 #' utilities for approximate matching of cell type terms to GO categories and annotations
+#' @importFrom stats na.omit
+#' @importFrom AnnotationDbi select
 #' @param celltypeString character atom to be used to search GO terms using 
+#' @param orgDb instances of orgDb
+#' @param cols columns to be retrieved in select operation
+#' @param gotab a data.frame with columns GO (goids) and TERM (term strings)
 #' \code{\link[base]{agrep}}
 #' @param \dots additional arguments to \code{\link[base]{agrep}}
+#' @note Very primitive, uses agrep to try to find relevant terms.
 #' @export
-cellTypeToGO = function(celltypeString, ...) {
- allGOterms[agrep(celltypeString, allGOterms[,2],...),]
+cellTypeToGO = function(celltypeString, gotab,...) {
+ gotab[agrep(celltypeString, gotab[,2],...),]
  }
 #' @rdname cellTypeToGO
 #' @export

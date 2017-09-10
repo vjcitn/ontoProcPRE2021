@@ -3,12 +3,15 @@
 \name{getModel}
 \alias{getModel}
 \alias{getWorld}
-\title{accessors for rrdfSupport}
+\title{accessors for RrdfSupport}
 \usage{
 getModel(x)
 
 getWorld(x)
 }
+\arguments{
+\item{x}{instance of RrdfSupport}
+}
 \description{
-accessors for rrdfSupport
+accessors for RrdfSupport
 }

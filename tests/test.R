@@ -1,6 +1,6 @@
 
-library(tenXplore)
+library(ontoProc)
 library(testthat)
 
-test_check("tenXplore")
+test_check("ontoProc")
 

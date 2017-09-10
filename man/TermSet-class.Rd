@@ -3,7 +3,17 @@
 \docType{class}
 \name{TermSet-class}
 \alias{TermSet-class}
+\alias{show,TermSet-method}
+\alias{show}
 \title{manage ontological data with tags and a DataFrame instance}
+\usage{
+\S4method{show}{TermSet}(object)
+}
+\arguments{
+\item{object}{instance of TermSet}
+}
 \description{
 manage ontological data with tags and a DataFrame instance
+
+abbreviated display for TermSet instances
 }
