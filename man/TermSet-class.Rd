@@ -3,7 +3,6 @@
 \docType{class}
 \name{TermSet-class}
 \alias{TermSet-class}
-\alias{validObject}
 \alias{show,TermSet-method}
 \alias{show}
 \title{manage ontological data with tags and a DataFrame instance}
@@ -11,7 +10,7 @@
 \S4method{show}{TermSet}(object)
 }
 \arguments{
-\item{object}{instance of TermSet}
+\item{object}{instance of TermSet class}
 }
 \value{
 instance of TermSet
@@ -19,12 +18,9 @@ instance of TermSet
 \description{
 manage ontological data with tags and a DataFrame instance
 
-validity method for TermSet
-
 abbreviated display for TermSet instances
 }
 \examples{
-validObject(new("TermSet"))
 if (!exists(".efosupp")) .efosupp = buildEFOOntSupport()
 defsibs = siblings_URL( model=getModel(.efosupp), 
                world=getWorld(.efosupp))

@@ -1,3 +1,14 @@
+
+.tsvalidity = function(object) {
+   chk1 = (length(object@ontoURLs)==nrow(object@cleanFrame))
+   chk2 = all(names(object@cleanFrame) %in% c("clean", "url", "parent", "qualTerms"))
+   report = ""
+   if (!chk1) report = "ontoURLs length != nrow(cleanFrame)"
+   if (!chk2) report = paste0(report, "...cleanFrame column names not as expected")
+   if (report == "") return(TRUE)
+   return(report)
+}
+
 #' manage ontological data with tags and a DataFrame instance
 #' @rdname TermSet-class
 #' @importFrom Biobase selectSome
@@ -6,27 +17,12 @@
 #' @return instance of TermSet
 #' @exportClass TermSet
 setClass("TermSet", representation(ontoURLs="character", 
-   cleanFrame="DataFrame"))
-#' validity method for TermSet
-#' @rdname TermSet-class
-#' @name validObject
-#' @param object instance of TermSet
-#' @examples
-#' validObject(new("TermSet"))
-#' @export
-setValidity("TermSet", function(object) {
-   chk1 = (length(object@ontoURLs)==nrow(object@cleanFrame))
-   chk2 = all(names(object@cleanFrame) %in% c("clean", "url", "parent", "qualTerms"))
-   report = ""
-   if (!chk1) report = "ontoURLs length != nrow(cleanFrame)"
-   if (!chk2) report = paste0(report, "...cleanFrame column names not as expected")
-   if (report == "") return(TRUE)
-   return(report)
-})
+   cleanFrame="DataFrame"), validity=.tsvalidity)
 #' abbreviated display for TermSet instances
 #' @rdname TermSet-class
 #' @aliases show
 #' @aliases show,TermSet-method
+#' @param object instance of TermSet class
 #' @examples
 #' if (!exists(".efosupp")) .efosupp = buildEFOOntSupport()
 #' defsibs = siblings_URL( model=getModel(.efosupp), 
