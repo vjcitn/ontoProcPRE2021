@@ -1,7 +1,7 @@
 Package: ontoProc
 Title: RDF processing of ontologies of anatomy, cell lines, and so on
 Description: Support harvesting of RDF representations of ontologies.
-Version: 0.99.1
+Version: 0.99.0
 Author: Vince Carey
 Imports: Biobase, S4Vectors, methods, AnnotationDbi, stats, utils
 Suggests: knitr, org.Hs.eg.db, org.Mm.eg.db, testthat
