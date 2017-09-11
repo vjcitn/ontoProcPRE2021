@@ -86,7 +86,7 @@ We focus on mouse.  The neuron subtypes identified as
 OWL subclasses of "neuron" have names
 ```{r getcl}
 cleanNames = function(tset) {
- tset@cleanFrame$clean
+ slot(tset,"cleanFrame")$clean
 }
 cleanNames(cochil)
 ```

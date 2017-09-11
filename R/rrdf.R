@@ -4,6 +4,7 @@
 #' @aliases show,RrdfSupport-method
 #' @aliases show
 #' @importFrom methods new show
+#' @return RrdfSupport instance
 #' @exportClass RrdfSupport
 setClass("RrdfSupport", representation(model="ANY", world="ANY"))
 #' @rdname RrdfSupport-class
@@ -15,15 +16,20 @@ setMethod("show", "RrdfSupport", function(object) {
 })
 
 #' accessors for RrdfSupport
+#' @return instance of \code{\link[redland]{Model-class}} from redland
 #' @export
 getModel = function(x) x@model
 #' @rdname getModel
 #' @param x instance of RrdfSupport
 #' @aliases getWorld
+#' @return instance of \code{\link[redland]{World-class}} from redland
 #' @export
 getWorld = function(x) x@world
 
 #' read and model the Experimental Factor Ontology as shipped in OWL and parsed in redland
+#' @return  instance of \code{\link{RrdfSupport-class}}
+#' @examples
+#' buildEFOOntSupport()
 #' @export
 buildEFOOntSupport = function() {
  EFworld <- new("World")
@@ -35,6 +41,9 @@ buildEFOOntSupport = function() {
 }
 
 #' read and model the Cell Ontology as shipped in OWL and parsed in redland
+#' @return instance of \code{\link{RrdfSupport-class}}
+#' @examples
+#' buildCellOntSupport()
 #' @export
 buildCellOntSupport = function() {
  CLworld <- new("World")

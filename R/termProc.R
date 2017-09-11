@@ -3,10 +3,17 @@
 #' @importFrom Biobase selectSome
 #' @importClassesFrom S4Vectors DataFrame
 #' @importFrom S4Vectors DataFrame
+#' @return instance of TermSet
 #' @exportClass TermSet
 setClass("TermSet", representation(ontoURLs="character", 
    cleanFrame="DataFrame"))
+#' validity method for TermSet
+#' @rdname TermSet-class
+#' @name validObject
 #' @param object instance of TermSet
+#' @examples
+#' validObject(new("TermSet"))
+#' @export
 setValidity("TermSet", function(object) {
    chk1 = (length(object@ontoURLs)==nrow(object@cleanFrame))
    chk2 = all(names(object@cleanFrame) %in% c("clean", "url", "parent", "qualTerms"))
@@ -20,7 +27,12 @@ setValidity("TermSet", function(object) {
 #' @rdname TermSet-class
 #' @aliases show
 #' @aliases show,TermSet-method
-#' @param object instance of TermSet
+#' @examples
+#' if (!exists(".efosupp")) .efosupp = buildEFOOntSupport()
+#' defsibs = siblings_URL( model=getModel(.efosupp), 
+#'                world=getWorld(.efosupp))
+#' class(defsibs)
+#' defsibs
 #' @export
 setMethod("show", "TermSet", function(object) {
 cat(sprintf("TermSet for %d terms\n", length(object@ontoURLs)))
@@ -29,6 +41,7 @@ cat(paste(selectSome(object@cleanFrame[,"clean"]), collapse=", "), "\n")
 #' combine TermSet instances
 #' @param x TermSet instance
 #' @param \dots additional instances
+#' @return TermSet instance
 #' @export
 setMethod("c", "TermSet", function(x, ...) {
   if (missing(x)) args = unname(list(...))
@@ -48,6 +61,7 @@ setMethod("c", "TermSet", function(x, ...) {
 #' @param urlstring a URI that serves as an rdf-schema class
 #' @param model RDF model instance as defined in redland package
 #' @param world RDF world instance as defined in redland package
+#' @return TermSet instance
 #' @examples
 #' if (!exists(".efosupp")) .efosupp = buildEFOOntSupport()
 #' siblings_URL( model=getModel(.efosupp), world=getWorld(.efosupp))
@@ -93,6 +107,10 @@ siblings_URL = function(urlstring="<http://www.ebi.ac.uk/efo/EFO_1001209>", mode
 #' acquire the label of an ontology subject tag
 #' @rdname siblings_URL
 #' @aliases label_URL
+#' @return character string
+#' @examples
+#' if (!exists(".efosupp")) .efosupp = buildEFOOntSupport()
+#' label_URL( model=getModel(.efosupp), world=getWorld(.efosupp))
 #' @export
 label_URL = function(urlstring="<http://www.ebi.ac.uk/efo/EFO_0000311>", model, world) {
   tstr = sprintf("SELECT ?c WHERE {%s <http://www.w3.org/2000/01/rdf-schema#label> ?c}", urlstring)
@@ -108,6 +126,9 @@ getString = function(x) gsub("\\\"", "", stripQual(stripLang(x)))
 #' acquire the label of an ontology subject tag
 #' @rdname siblings_URL
 #' @aliases children_URL
+#' if (!exists(".efosupp")) .efosupp = buildEFOOntSupport()
+#' children_URL( model=getModel(.efosupp), world=getWorld(.efosupp))
+#' @return TermSet instance
 #' @export
 children_URL = function(urlstring="<http://www.ebi.ac.uk/efo/EFO_0000787>", model,
    world) {
@@ -140,14 +161,21 @@ children_URL = function(urlstring="<http://www.ebi.ac.uk/efo/EFO_0000787>", mode
 #' \code{\link[base]{agrep}}
 #' @param \dots additional arguments to \code{\link[base]{agrep}}
 #' @note Very primitive, uses agrep to try to find relevant terms.
+#' @return data.frame
+#' @examples
+#' data(allGOterms)
+#' library(org.Hs.eg.db)
+#' head(cellTypeToGO("serotonergic neuron", allGOterms))
+#' head(cellTypeToGenes("serotonergic neuron", allGOterms, org.Hs.eg.db))
 #' @export
 cellTypeToGO = function(celltypeString, gotab,...) {
  gotab[agrep(celltypeString, gotab[,2],...),]
  }
 #' @rdname cellTypeToGO
+#' @return data.frame
 #' @export
-cellTypeToGenes = function(celltypeString, orgDb, cols=c("ENSEMBL", "SYMBOL"),...) {
- g = cellTypeToGO(celltypeString, ...)
+cellTypeToGenes = function(celltypeString, gotab, orgDb, cols=c("ENSEMBL", "SYMBOL"),...) {
+ g = cellTypeToGO(celltypeString, gotab, ...)
  na.omit(AnnotationDbi::select(orgDb, keys=g$GOID, keytype="GO", columns=cols))
 }
 

@@ -4,6 +4,14 @@
 \alias{siblings_URL}
 \alias{label_URL}
 \alias{children_URL}
+\alias{if}
+\alias{(!exists(".efosupp"))}
+\alias{.efosupp}
+\alias{=}
+\alias{buildEFOOntSupport()}
+\alias{children_URL(}
+\alias{model=getModel(.efosupp),}
+\alias{world=getWorld(.efosupp))}
 \title{generate a TermSet with siblings of a given term}
 \usage{
 siblings_URL(urlstring = "<http://www.ebi.ac.uk/efo/EFO_1001209>", model,
@@ -21,6 +29,13 @@ children_URL(urlstring = "<http://www.ebi.ac.uk/efo/EFO_0000787>", model,
 
 \item{world}{RDF world instance as defined in redland package}
 }
+\value{
+TermSet instance
+
+character string
+
+TermSet instance
+}
 \description{
 generate a TermSet with siblings of a given term
 
@@ -31,4 +46,6 @@ acquire the label of an ontology subject tag
 \examples{
 if (!exists(".efosupp")) .efosupp = buildEFOOntSupport()
 siblings_URL( model=getModel(.efosupp), world=getWorld(.efosupp))
+if (!exists(".efosupp")) .efosupp = buildEFOOntSupport()
+label_URL( model=getModel(.efosupp), world=getWorld(.efosupp))
 }

@@ -6,6 +6,12 @@
 \usage{
 buildEFOOntSupport()
 }
+\value{
+instance of \code{\link{RrdfSupport-class}}
+}
 \description{
 read and model the Experimental Factor Ontology as shipped in OWL and parsed in redland
+}
+\examples{
+buildEFOOntSupport()
 }

@@ -7,7 +7,8 @@
 \usage{
 cellTypeToGO(celltypeString, gotab, ...)
 
-cellTypeToGenes(celltypeString, orgDb, cols = c("ENSEMBL", "SYMBOL"), ...)
+cellTypeToGenes(celltypeString, gotab, orgDb, cols = c("ENSEMBL", "SYMBOL"),
+  ...)
 }
 \arguments{
 \item{celltypeString}{character atom to be used to search GO terms using}
@@ -21,9 +22,20 @@ cellTypeToGenes(celltypeString, orgDb, cols = c("ENSEMBL", "SYMBOL"), ...)
 
 \item{cols}{columns to be retrieved in select operation}
 }
+\value{
+data.frame
+
+data.frame
+}
 \description{
 utilities for approximate matching of cell type terms to GO categories and annotations
 }
 \note{
 Very primitive, uses agrep to try to find relevant terms.
+}
+\examples{
+data(allGOterms)
+library(org.Hs.eg.db)
+head(cellTypeToGO("serotonergic neuron", allGOterms))
+head(cellTypeToGenes("serotonergic neuron", allGOterms, org.Hs.eg.db))
 }

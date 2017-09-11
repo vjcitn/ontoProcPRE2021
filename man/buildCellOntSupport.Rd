@@ -6,6 +6,12 @@
 \usage{
 buildCellOntSupport()
 }
+\value{
+instance of \code{\link{RrdfSupport-class}}
+}
 \description{
 read and model the Cell Ontology as shipped in OWL and parsed in redland
+}
+\examples{
+buildCellOntSupport()
 }

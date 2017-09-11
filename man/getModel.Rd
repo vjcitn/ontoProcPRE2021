@@ -12,6 +12,11 @@ getWorld(x)
 \arguments{
 \item{x}{instance of RrdfSupport}
 }
+\value{
+instance of \code{\link[redland]{Model-class}} from redland
+
+instance of \code{\link[redland]{World-class}} from redland
+}
 \description{
 accessors for RrdfSupport
 }

@@ -3,12 +3,12 @@ Title: RDF processing of ontologies of anatomy, cell lines, and so on
 Description: Support harvesting of RDF representations of ontologies.
 Version: 0.0.7
 Author: Vince Carey
-Imports: Biobase, S4Vectors, methods, AnnotationDbi
+Imports: Biobase, S4Vectors, methods, AnnotationDbi, stats, utils
 Suggests: knitr, org.Hs.eg.db, org.Mm.eg.db, testthat
-Depends: R (>= 3.3), redland
+Depends: R (>= 3.4), redland
 Maintainer: VJ Carey <stvjc@channing.harvard.edu>
 License: Artistic-2.0
 LazyLoad: yes
-biocViews: Infrastructure
+biocViews: Infrastructure, GO
 RoxygenNote: 6.0.1.9000
 VignetteBuilder: knitr

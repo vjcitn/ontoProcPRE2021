@@ -11,6 +11,9 @@
 \arguments{
 \item{object}{instance of RrdfSupport}
 }
+\value{
+RrdfSupport instance
+}
 \description{
 container for RDF model and world instances as defined in redland
 }

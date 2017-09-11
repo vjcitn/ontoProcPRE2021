@@ -3,4 +3,7 @@
 #' @docType data
 #' @format data.frame instance
 #' @source GO.db, August 2017
+#' @examples
+#' data(allGOterms)
+#' head(allGOterms)
 "allGOterms"

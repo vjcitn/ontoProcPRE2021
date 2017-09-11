@@ -12,6 +12,9 @@
 
 \item{\dots}{additional instances}
 }
+\value{
+TermSet instance
+}
 \description{
 combine TermSet instances
 }

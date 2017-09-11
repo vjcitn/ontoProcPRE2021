@@ -14,4 +14,8 @@ allGOterms
 \description{
 allGOterms: data.frame with ids and terms
 }
+\examples{
+data(allGOterms)
+head(allGOterms)
+}
 \keyword{datasets}
