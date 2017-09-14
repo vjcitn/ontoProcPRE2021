@@ -11,6 +11,9 @@ secLevGen(choices, ont)
 
 \item{ont}{instance of ontology_index (S3) from ontologyIndex package}
 }
+\value{
+TermSet instance
+}
 \description{
 simple generation of children of 'choices' given as terms, returned as TermSet
 }

@@ -144,6 +144,7 @@ cellTypeToGenes = function(celltypeString, gotab, orgDb, cols=c("ENSEMBL", "SYMB
 #' simple generation of children of 'choices' given as terms, returned as TermSet
 #' @param choices vector of terms
 #' @param ont instance of ontology_index (S3) from ontologyIndex package
+#' @return TermSet instance
 #' @examples
 #' efoOnto = getEFOOnto()
 #' secLevGen( "disease", efoOnto )
