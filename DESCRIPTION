@@ -1,15 +1,14 @@
 Package: ontoProc
 Title: RDF processing of ontologies of anatomy, cell lines, and so on
 Description: Support harvesting of RDF representations of ontologies.
-Version: 0.99.5
-Author: Vince Carey
+Version: 0.99.6
+Author: Vince Carey <stvjc@channing.harvard.edu>
 Imports: Biobase, S4Vectors, methods, AnnotationDbi, stats, utils
 Suggests: knitr, org.Hs.eg.db, org.Mm.eg.db, testthat
-Depends: R (>= 3.4), redland
+Depends: R (>= 3.4), ontologyIndex
 Maintainer: VJ Carey <stvjc@channing.harvard.edu>
 License: Artistic-2.0
 LazyLoad: yes
 biocViews: Infrastructure, GO
 RoxygenNote: 6.0.1.9000
 VignetteBuilder: knitr
-SystemRequirements: Mac OSX: redland (>= 1.0.14) ; Linux: librdf0 (>= 1.0.14), librdf0-dev (>= 1.0.14)

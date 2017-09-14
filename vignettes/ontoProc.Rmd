@@ -45,39 +45,33 @@ genomic experiments.
 
 ## An enumeration of cell types
 
-<!--
-label_URL("<http://www.ebi.ac.uk/efo/EFO_0000324>", getModel(ee), getWorld(ee))
-$c
-[1] "\"cell type\""
--->
-
 We used the [Experimental Factor Ontology](https://www.ebi.ac.uk/efo/) 'cell type' class ([EFO_0000324](https://www.ebi.ac.uk/ols/ontologies/efo/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0000324)) to obtain
 an enumeration of cell types.  As of August 22 2017 it is an open question
 whether [Cell Ontology](http://obofoundry.org/ontology/cl.html) should be used for this purpose.  The author's
 subjective impression is that EFO has a simpler collection of terms for cell types,
 while Cell Ontology has a better collection of terms for types of neurons.
 
-## Basic operations based on redland with OWL
+## Basic operations using ontologyIndex facilities
 
-This package ships with the OWL representation of the [Cell Ontology](http://obofoundry.org/ontology/cl.html).
-This is imported as RDF using `r CRANpkg("redland")`.  
+This package ships with an R serialization
+of an OBO representation of the [Cell Ontology](http://obofoundry.org/ontology/cl.html).
+This is created using `get_OBO` in `r CRANpkg("ontologyIndex")`.
+(For ontologies only available in OWL format, the python pronto
+package was used to convert to OBO.)
 ```{r useCO}
 library(ontoProc)
-co = buildCellOntSupport()
-co
+cellOnto = getCellOnto()
+cellOnto
 ```
 At this time,
 elementary manipulations of
 the ontology involve collecting the children, siblings, or labels for given
 URIs.
 ```{r useCO2}
-cochil = children_URL("<http://purl.obolibrary.org/obo/CL_0000540>", 
-    model=getModel(co), world=getWorld(co))
+cochil = children_TAG("CL:0000540", cellOnto) 
 cochil
-label_URL("<http://purl.obolibrary.org/obo/CL_0000540>", 
-    model=getModel(co), world=getWorld(co))
-siblings_URL("<http://purl.obolibrary.org/obo/CL_0000540>", 
-    model=getModel(co), world=getWorld(co))
+label_TAG("CL:0000540", cellOnto)
+siblings_TAG("CL:0000540", cellOnto) 
 ```
 
 # Application: finding genes annotated to neuron subtypes
@@ -117,18 +111,9 @@ in the data object `allGOterms`.
 
 ```{r lkfuns}
 data(allGOterms)
-cellTypeToGO = function(celltypeString, ...) {
- allGOterms[agrep(celltypeString, allGOterms[,2],...),]
- }
-cellTypeToGenes = function(celltypeString, orgDb, cols=c("ENSEMBL", "SYMBOL"),...) {
- g = cellTypeToGO(celltypeString, ...)
- na.omit(AnnotationDbi::select(orgDb, keys=g$GOID, keytype="GO", columns=cols))
-}
-library(ontoProc)
-data(allGOterms)
-cellTypeToGO("serotonergic neuron")
-cellTypeToGenes("serotonergic neuron", orgDb=org.Mm.eg.db)
-cellTypeToGenes("serotonergic neuron", orgDb=org.Hs.eg.db)
+cellTypeToGO("serotonergic neuron", gotab=allGOterms)
+cellTypeToGenes("serotonergic neuron", orgDb=org.Mm.eg.db, gotab=allGOterms)
+cellTypeToGenes("serotonergic neuron", orgDb=org.Hs.eg.db, gotab=allGOterms)
 ```
 
 ## Discrimination of neuron types: exploratory multivariate analysis

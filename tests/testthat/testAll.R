@@ -1,27 +1,52 @@
+# [1] "cellTypeToGenes" "cellTypeToGO"    "children_TAG"    "getCellLineOnto"
+# [5] "getCellOnto"     "getChebiLite"    "getEFOOnto"      "label_TAG"      
+# [9] "secLevGen"       "show"            "siblings_TAG"   
+
 
 library(ontoProc)
-
-#export(buildCellOntSupport)
-#export(buildEFOOntSupport)
-#export(cellTypeToGO)
-#export(cellTypeToGenes)
-#export(children_URL)
-#export(getModel)
-#export(getWorld)
-#export(label_URL)
-#export(siblings_URL)
-#export(tenXplore)
-#exportClasses(TermSet)
-#exportClasses(rrdfSupport)
-#exportMethods(show)
-#importFrom(Biobase,selectSome)
 
 context("ontology processing")
 
 test_that("siblings compute", {
-  if (!exists(".efosupp")) .efosupp = buildEFOOntSupport()
-  sibs = siblings_URL( model=getModel(.efosupp), world=getWorld(.efosupp))
+  efoOnto = getEFOOnto()
+  sibs = siblings_TAG( ontology = efoOnto )
   expect_true(class(sibs)=="TermSet")
 })
 
+test_that("cellTypeToGenes yields genes", {
+  data(allGOterms)
+  library(org.Hs.eg.db)
+  cc = cellTypeToGenes("GABAergic neuron", allGOterms, org.Hs.eg.db)
+  expect_true(nrow(cc)==3)
+})
 
+test_that("children_TAG works", {
+  co = getCellOnto()
+  chn = children_TAG("CL:0000540", co)
+  expect_true(nrow(chn@cleanFrame)==34)
+})
+
+test_that("onto generators work", {
+  onts = c("getCellLineOnto", "getCellOnto", "getChebiLite", "getEFOOnto")
+  oo = vapply(onts, function(x) class(get(x)()), character(1))
+  expect_true(all(oo=="ontology_index"))
+})
+  
+test_that("label_TAG works", {
+  co = getCellOnto()
+  chn = label_TAG("CL:0000540", co)
+  expect_true(as.character(chn) == "neuron")
+})
+
+test_that("secLevGen works", {
+  co = getCellOnto()
+  chn = secLevGen("neuron", co)
+  expect_true(nrow(chn@cleanFrame)==34)
+})
+  
+
+test_that("siblings_TAG works", {
+  co = getCellOnto()
+  chn = siblings_TAG("CL:0000540", co)
+  expect_true(nrow(chn@cleanFrame)==22)
+})

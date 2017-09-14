@@ -21,9 +21,8 @@ manage ontological data with tags and a DataFrame instance
 abbreviated display for TermSet instances
 }
 \examples{
-if (!exists(".efosupp")) .efosupp = buildEFOOntSupport()
-defsibs = siblings_URL( model=getModel(.efosupp), 
-               world=getWorld(.efosupp))
+efoOnto = getEFOOnto()
+defsibs = siblings_TAG("EFO:1001209", efoOnto)
 class(defsibs)
 defsibs
 }
