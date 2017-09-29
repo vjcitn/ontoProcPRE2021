@@ -1,0 +1,25 @@
+format-version: 1.2
+data-version: 155
+date: 01:09:2017 02:42
+saved-by: chebi
+subsetdef: 1_STAR "Preliminary entries"
+subsetdef: 2_STAR "Annotated by 3rd party"
+subsetdef: 3_STAR "Manually annotated by ChEBI Team"
+synonymtypedef: IUPAC_NAME "IUPAC NAME"
+synonymtypedef: FORMULA "FORMULA"
+synonymtypedef: CHARGE "CHARGE"
+synonymtypedef: MASS "MASS"
+synonymtypedef: MONOISOTOPIC_MASS "MONOISOTOPIC MASS"
+synonymtypedef: SMILES "SMILES"
+synonymtypedef: InChI "InChI"
+synonymtypedef: InChIKey "InChIKey"
+synonymtypedef: BRAND_NAME "BRAND NAME"
+synonymtypedef: INN "INN"
+default-namespace: chebi_ontology
+remark: ChEBI subsumes and replaces the Chemical Ontology first
+remark: developed by Michael Ashburner & Pankaj Jaiswal.
+remark: Author: ChEBI curation team 
+remark: ChEBI Release version 155
+remark: For any queries contact chebi-help@ebi.ac.uk 
+ontology: chebi
+

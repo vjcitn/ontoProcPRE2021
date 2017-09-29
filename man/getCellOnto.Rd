@@ -5,6 +5,8 @@
 \alias{getCellLineOnto}
 \alias{getEFOOnto}
 \alias{getChebiLite}
+\alias{getCellosaurusOnto}
+\alias{getUBERON_NE}
 \title{load ontologies that may include non-ascii strings and therefore cannot be in data folder}
 \usage{
 getCellOnto()
@@ -14,8 +16,16 @@ getCellLineOnto()
 getEFOOnto()
 
 getChebiLite()
+
+getCellosaurusOnto()
+
+getUBERON_NE()
 }
 \value{
+instance of ontology_index (S3) from ontologyIndex
+
+instance of ontology_index (S3) from ontologyIndex
+
 instance of ontology_index (S3) from ontologyIndex
 
 instance of ontology_index (S3) from ontologyIndex

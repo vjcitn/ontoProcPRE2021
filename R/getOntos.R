@@ -30,3 +30,15 @@ getEFOOnto = function() get(load(system.file(
 #' @export
 getChebiLite = function() get(load(system.file(
       "ontoRda/chebi_lite.rda", package="ontoProc")))
+#' @rdname getCellOnto
+#' @aliases getCellosaurusOnto
+#' @return instance of ontology_index (S3) from ontologyIndex
+#' @export
+getCellosaurusOnto = function() get(load(system.file(
+      "ontoRda/cellosaurusOnto.rda", package="ontoProc")))
+#' @rdname getCellOnto
+#' @aliases getUBERON_NE
+#' @return instance of ontology_index (S3) from ontologyIndex
+#' @export
+getUBERON_NE = function() get(load(system.file(
+      "ontoRda/ne_uberon.rda", package="ontoProc")))

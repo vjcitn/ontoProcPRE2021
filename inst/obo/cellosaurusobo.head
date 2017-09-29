@@ -1,0 +1,45 @@
+format-version: 1.2
+data-version: 23.0
+date: 08:22:2017 12:00
+default-namespace: cellosaurus
+
+subsetdef: Adult_stem_cell "Adult stem cell"
+subsetdef: Cancer_cell_line "Cancer cell line"
+subsetdef: Conditionally_immortalized_cell_line "Conditionally immortalized cell line"
+subsetdef: Embryonic_stem_cell "Embryonic stem cell"
+subsetdef: Factor-dependent_cell_line "Factor-dependent cell line"
+subsetdef: Female "Female"
+subsetdef: Finite_cell_line "Finite cell line"
+subsetdef: Hybrid_cell_line "Hybrid cell line"
+subsetdef: Hybridoma "Hybridoma"
+subsetdef: Induced_pluripotent_stem_cell "Induced pluripotent stem cell"
+subsetdef: Male "Male"
+subsetdef: Mixed_sex "Mixed sex"
+subsetdef: Sex_ambiguous "Sex ambiguous"
+subsetdef: Sex_undetermined "Sex undetermined"
+subsetdef: Spontaneously_immortalized_cell_line "Spontaneously immortalized cell line"
+subsetdef: Stromal_cell_line "Stromal cell line"
+subsetdef: Telomerase_immortalized_cell_line "Telomerase immortalized cell line"
+subsetdef: Transformed_cell_line "Transformed cell line"
+subsetdef: Undefined_cell_line_type "Undefined cell line type"
+ontology: Cellosaurus
+
+! Description: Cellosaurus: a knowledge resource on cell lines
+! Version: 23.0
+! Last update: 22-August-2017
+!
+!    _____     _ _
+!   / ____|   | | |
+!  | |     ___| | | ___  ___  __ _ _   _ _ __ _   _ ___
+!  | |    / _ \ | |/ _ \/ __|/ _` | | | | '__| | | / __|
+!  | |___|  __/ | | (_) \__ \ (_| | |_| | |  | |_| \__ \
+!   \_____\___|_|_|\___/|___/\__,_|\__,_|_|   \__,_|___/
+!
+!
+! We have chosen to apply the Creative Commons Attribution-NoDerivs License
+! (http://creativecommons.org/licenses/by-nd/3.0/) to this resource. This
+! means that you are free to copy, distribute, display and make commercial
+! use of the Cellosaurus in all legislations, provided you give us credit.
+! However, if you intend to distribute a modified version of this database,
+! you must ask us (cellosaurus@sib.swiss) for permission first.
+
