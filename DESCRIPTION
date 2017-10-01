@@ -1,7 +1,7 @@
 Package: ontoProc
 Title: processing of ontologies of anatomy, cell lines, and so on
 Description: Support harvesting of diverse bioinformatic ontologies.
-Version: 0.99.11
+Version: 0.99.12
 Author: Vince Carey <stvjc@channing.harvard.edu>
 Imports: Biobase, S4Vectors, methods, AnnotationDbi, stats, utils,
 	shiny

@@ -42,3 +42,9 @@ getCellosaurusOnto = function() get(load(system.file(
 #' @export
 getUBERON_NE = function() get(load(system.file(
       "ontoRda/ne_uberon.rda", package="ontoProc")))
+#' @rdname getCellOnto
+#' @aliases getChebiOnto
+#' @return instance of ontology_index (S3) from ontologyIndex
+#' @export
+getChebiOnto = function() get(load(system.file(
+      "ontoRda/chebi_full.rda", package="ontoProc")))
