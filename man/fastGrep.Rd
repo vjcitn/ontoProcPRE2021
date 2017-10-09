@@ -15,6 +15,9 @@ fastGrep(patt, onto, field, ...)
 
 \item{\dots}{passed to grep}
 }
+\value{
+logical vector indicating vector or list elements where a match is found
+}
 \description{
 some fields of interest are lists, and grep per se should not be used -- this function checks and uses grep within vapply when appropriate
 }
