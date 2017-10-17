@@ -49,13 +49,10 @@ setMethod("c", "TermSet", function(x, ...) {
   if (missing(x)) args = unname(list(...))
   else args = unname(list(x, ...))
   if (length(args)==1) return(args)
-  ansu = args[[1]]@ontoTags
-  ansf = args[[1]]@cleanFrame
-  for (j in 2:length(args)) {
-   ansu = c(ansu, args[[j]]@ontoTags)
-   ansf = rbind(ansf, args[[j]]@cleanFrame)
-   }
- new("TermSet", ontoTags = ansu, cleanFrame=ansf)
+  j <- seq_len(args)
+  ansu <- unlist(lapply(args, function(elt) elt@ontoTags))
+  ansf <- do.call(rbind, lapply(args, function(elt) elt@cleanFrame))
+  new("TermSet", ontoTags = ansu, cleanFrame=ansf)
 })
 
 #' generate a TermSet with siblings of a given term, excluding that term by default

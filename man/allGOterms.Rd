@@ -6,7 +6,8 @@
 \title{allGOterms: data.frame with ids and terms}
 \format{data.frame instance}
 \source{
-GO.db, August 2017
+This is a snapshot of all the terms available from 
+GO.db (3.4.2), August 2017, using keys(GO.db, keytype="TERM").
 }
 \usage{
 allGOterms
