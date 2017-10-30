@@ -7,7 +7,7 @@ Description: Support harvesting of diverse bioinformatic ontologies,
 	analyze genome-scale experiments, particularly cell x compound 
         screens.  Another purpose is to strengthen development of 
 	compelling use cases for richer interfaces to emerging ontologies.
-Version: 1.0.0
+Version: 1.1.0
 Author: Vince Carey <stvjc@channing.harvard.edu>
 Imports: Biobase, S4Vectors, methods, AnnotationDbi, stats, utils,
 	shiny
