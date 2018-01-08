@@ -48,3 +48,9 @@ getUBERON_NE = function() get(load(system.file(
 #' @export
 getChebiOnto = function() get(load(system.file(
       "ontoRda/chebi_full.rda", package="ontoProc")))
+#' @rdname getCellOnto
+#' @aliases getOncotreeOnto
+#' @return instance of ontology_index (S3) from ontologyIndex
+#' @export
+getOncotreeOnto = function() get(load(system.file(
+      "ontoRda/oncotree.rda", package="ontoProc")))

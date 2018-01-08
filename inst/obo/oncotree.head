@@ -1,0 +1,29 @@
+
+format-version: 1.2
+data-version: ncit/releases/2017-12-15/ncit-oncotree.ttl
+remark: Simplified hierarchy for terms used within OncoTree
+ontology: ncit/ncit-oncotree.ttl
+property_value: http://purl.org/dc/terms/title "NCIt OncoTree slim" xsd:string
+
+[Term]
+id: NCIT:C100093
+name: Central Nervous System Nongerminomatous Germ Cell Tumor
+def: "Germ cell tumors of the central nervous system other than germinoma.  This category includes teratoma, choriocarcinoma, embryonal carcinoma, and yolk sac tumor." [] {http://purl.obolibrary.org/obo/NCIT_P378="NCI"}
+subset: NCIT:C102905
+subset: NCIT:C103048
+synonym: "Central Nervous System Nongerminomatous Germ Cell Tumor" EXACT [] {http://purl.obolibrary.org/obo/NCIT_P383="PT", http://purl.obolibrary.org/obo/NCIT_P384="NCI"}
+synonym: "Nongerminomatous GCT - CNS" EXACT [] {http://purl.obolibrary.org/obo/NCIT_P384="CTEP", http://purl.obolibrary.org/obo/NCIT_P383="SY", http://purl.obolibrary.org/obo/NCIT_P385="10065853", http://purl.obolibrary.org/obo/NCIT_P386="SDC"}
+synonym: "Nongerminomatous germ cell tumor of the CNS" EXACT [] {http://purl.obolibrary.org/obo/NCIT_P383="PT", http://purl.obolibrary.org/obo/NCIT_P384="CTEP", http://purl.obolibrary.org/obo/NCIT_P385="10065853", http://purl.obolibrary.org/obo/NCIT_P386="SDC"}
+is_a: NCIT:C121619 ! Nongerminomatous Germ Cell Tumor
+is_a: NCIT:C5461 ! Central Nervous System Germ Cell Tumor
+property_value: NCIT:NHC0 "C100093" xsd:string
+property_value: NCIT:P106 "Neoplastic Process" xsd:string
+property_value: NCIT:P108 "Central Nervous System Nongerminomatous Germ Cell Tumor" xsd:string
+property_value: NCIT:P207 "C1696109" xsd:string
+property_value: NCIT:P322 "CTEP" xsd:string
+property_value: NCIT:P363 "Undetermined" xsd:string
+
+[Term]
+id: NCIT:C102870
+name: Ovarian Non-Dysgerminomatous Germ Cell Tumor
+
