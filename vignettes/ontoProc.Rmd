@@ -21,21 +21,20 @@ output:
 suppressWarnings({
 suppressPackageStartupMessages({
 library(ontoProc)
+library(BiocStyle)
 library(org.Mm.eg.db)
 library(org.Hs.eg.db)
 })
 })
 ```
 
-# Executive summary
-
-The ontoProc package was developed to facilitate
-the coding of an ontology-driven visualizer of transcriptomic
-patterns in single-cell RNA-seq studies ([tenXplore](http://github.com/vjcitn/tenXplore)).
-
-![dashsnap](dashboard.png)
-
 # Introduction
+
+The `r Biocpkg("ontoProc")` package
+includes tools for
+
+- programming with ontology snapshots that are distributed with the package
+- annotating free text with ontology tags
 
 Our primary objective is facilitating use of ontological
 metadata to simplify construction of formally
@@ -43,11 +42,20 @@ annotated hierarchies of samples or
 features that should be traversed in analysis of complex
 genomic experiments.
 
+The ontoProc package was developed to facilitate
+the coding of an ontology-driven visualizer of transcriptomic
+patterns in single-cell RNA-seq studies ([tenXplore](http://github.com/vjcitn/tenXplore)).
+
+![dashsnap](dashboard.png)
+
+# Application to cell type hierarchy
+
 ## An enumeration of cell types
 
 We used the [Experimental Factor Ontology](https://www.ebi.ac.uk/efo/) 'cell type' class ([EFO_0000324](https://www.ebi.ac.uk/ols/ontologies/efo/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0000324)) to obtain
 an enumeration of cell types.  As of August 22 2017 it is an open question
-whether [Cell Ontology](http://obofoundry.org/ontology/cl.html) should be used for this purpose.  The author's
+whether [Cell Ontology](http://obofoundry.org/ontology/cl.html) or
+[Cellosaurus](https://web.expasy.org/cellosaurus/) should be used for this purpose.  The author's
 subjective impression is that EFO has a simpler collection of terms for cell types,
 while Cell Ontology has a better collection of terms for types of neurons.
 
@@ -134,3 +142,39 @@ system should be useful for introducing new terms that
 facilitate better connections between anatomic structures and
 sets of genes or other genomic features.
 
+# Annotation of free text
+
+The `humrna` data.frame supplied with the package is a small
+sample of metadata from NCBI Sequence Read Archive (SRA).  The
+`study title` field has been serialized as `minicorpus`.
+
+```{r lkmc}
+data(minicorpus)
+head(minicorpus)
+```
+
+There is a convention in text analysis of identifying _stop words_ that
+are unlikely to be very useful for interpretation.  The `dropStop`
+function tokenizes the study titles and eliminates stop words.
+
+```{r lksto}
+dropStop(head(minicorpus))
+```
+
+My hope is that EMBL BioSolr will help index strings of this
+type with formal ontology terms.  However, as a step in the
+general direction, we have the following examples.
+
+```{r lk1}
+library(ontoProc)
+cs = getCellosaurusOnto()
+ch = getChebiOnto()
+minicorpus[1]
+grep("P493", cs$name, value=TRUE, ignore.case=TRUE)
+grep("doxycyline", ch$name, value=TRUE, ignore.case=TRUE)
+```
+Based on PMID 10956386, P493-6 is an EBV-EBNA1 positive
+cell line, but that is not revealed in our image of
+the ontology.  Will available tools help us to automate the
+systematic mapping of study concepts?  Or will manual curation
+be necessary?
