@@ -9,6 +9,8 @@
 \alias{getUBERON_NE}
 \alias{getChebiOnto}
 \alias{getOncotreeOnto}
+\alias{getDiseaseOnto}
+\alias{getGeneOnto}
 \title{load ontologies that may include non-ascii strings and therefore cannot be in data folder}
 \usage{
 getCellOnto()
@@ -26,8 +28,16 @@ getUBERON_NE()
 getChebiOnto()
 
 getOncotreeOnto()
+
+getDiseaseOnto()
+
+getGeneOnto()
 }
 \value{
+instance of ontology_index (S3) from ontologyIndex
+
+instance of ontology_index (S3) from ontologyIndex
+
 instance of ontology_index (S3) from ontologyIndex
 
 instance of ontology_index (S3) from ontologyIndex

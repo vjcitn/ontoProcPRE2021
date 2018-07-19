@@ -11,8 +11,7 @@
 #' @export
 dropStop = function(x, drop, lower=TRUE, splitby=" ") {
  if (missing(drop)) {
-    data(stopWords, package="ontoProc")
-    drop = stopWords
+    drop = ontoProc::stopWords
     }
  tx = force
  if (lower) tx = tolower

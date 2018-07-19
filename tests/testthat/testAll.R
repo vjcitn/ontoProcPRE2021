@@ -10,7 +10,7 @@ context("ontology processing")
 test_that("siblings compute", {
   efoOnto = getEFOOnto()
   sibs = siblings_TAG( ontology = efoOnto )
-  expect_true(class(sibs)=="TermSet")
+  expect_true(is(sibs,"TermSet"))
 })
 
 test_that("cellTypeToGenes yields genes", {

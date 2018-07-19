@@ -54,3 +54,16 @@ getChebiOnto = function() get(load(system.file(
 #' @export
 getOncotreeOnto = function() get(load(system.file(
       "ontoRda/oncotree.rda", package="ontoProc")))
+#' @rdname getCellOnto
+#' @aliases getDiseaseOnto
+#' @return instance of ontology_index (S3) from ontologyIndex
+#' @export
+getDiseaseOnto = function() get(load(system.file(
+      "ontoRda/diseaseOnto.rda", package="ontoProc")))
+#' @rdname getCellOnto
+#' @aliases getGeneOnto
+#' @return instance of ontology_index (S3) from ontologyIndex
+#' @export
+getGeneOnto = function() get(load(system.file(
+      "ontoRda/goOnto.rda", package="ontoProc")))
+

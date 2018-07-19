@@ -1,4 +1,5 @@
 #' obtain named character vector of terms from Cell Line Ontology, omitting obsolete and trailing 'cell'
+#' @return character()
 #' @examples
 #' cleanCLOnames()[1:10]
 #' @export
@@ -11,9 +12,10 @@ cleanCLOnames = function() {
 }
 
 
-chker = function(x,y,n=1,...) {d = adist(x,y,...); y[order(d,na.last=TRUE)][1:n]}
+chker = function(x,y,n=1,...) {d = adist(x,y,...); y[order(d,na.last=TRUE)][seq_len(n)]}
 
 #' repair nomenclature mismatches (to curated term set) in a vector of terms
+#' @importFrom utils adist
 #' @param cand character vector of candidate terms
 #' @param namedOffic named character vector of curated terms, the names are regarded as tags, intended to be identifiers in curated ontologies
 #' @param n numeric(1) number of nearest neighbors to return
