@@ -49,7 +49,7 @@ setMethod("c", "TermSet", function(x, ...) {
   if (missing(x)) args = unname(list(...))
   else args = unname(list(x, ...))
   if (length(args)==1) return(args)
-  j <- seq_len(args)
+  j <- seq_len(length(args))
   ansu <- unlist(lapply(args, function(elt) elt@ontoTags))
   ansf <- do.call(rbind, lapply(args, function(elt) elt@cleanFrame))
   new("TermSet", ontoTags = ansu, cleanFrame=ansf)

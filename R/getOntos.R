@@ -67,3 +67,10 @@ getDiseaseOnto = function() get(load(system.file(
 getGeneOnto = function() get(load(system.file(
       "ontoRda/goOnto.rda", package="ontoProc")))
 
+#' @rdname getCellOnto
+#' @aliases getHCAOnto
+#' @return instance of ontology_index (S3) from ontologyIndex,
+#' @note produced from HCAO.owl at https://github.com/HumanCellAtlas/ontology as of 15 Aug 2018, using python pronto module
+#' @export
+getHCAOnto = function() get(load(system.file(
+      "ontoRda/hcaoOnto.rda", package="ontoProc")))

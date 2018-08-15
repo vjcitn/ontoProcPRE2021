@@ -11,6 +11,7 @@
 \alias{getOncotreeOnto}
 \alias{getDiseaseOnto}
 \alias{getGeneOnto}
+\alias{getHCAOnto}
 \title{load ontologies that may include non-ascii strings and therefore cannot be in data folder}
 \usage{
 getCellOnto()
@@ -32,6 +33,8 @@ getOncotreeOnto()
 getDiseaseOnto()
 
 getGeneOnto()
+
+getHCAOnto()
 }
 \value{
 instance of ontology_index (S3) from ontologyIndex
@@ -53,9 +56,14 @@ instance of ontology_index (S3) from ontologyIndex
 instance of ontology_index (S3) from ontologyIndex
 
 instance of ontology_index (S3) from ontologyIndex
+
+instance of ontology_index (S3) from ontologyIndex,
 }
 \description{
 load ontologies that may include non-ascii strings and therefore cannot be in data folder
+}
+\note{
+produced from HCAO.owl at https://github.com/HumanCellAtlas/ontology as of 15 Aug 2018
 }
 \examples{
 co = getCellOnto()

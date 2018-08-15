@@ -50,3 +50,11 @@ test_that("siblings_TAG works", {
   chn = siblings_TAG("CL:0000540", co)
   expect_true(nrow(chn@cleanFrame)==22)
 })
+
+test_that("concatenation works", {
+  efoOnto = getEFOOnto()
+  defsibs = siblings_TAG("EFO:1001209", efoOnto)
+  conc = c(defsibs, defsibs)
+  expect_true(length(conc@ontoTags)==8)
+})
+

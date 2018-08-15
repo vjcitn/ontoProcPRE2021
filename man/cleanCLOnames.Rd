@@ -6,6 +6,9 @@
 \usage{
 cleanCLOnames()
 }
+\value{
+character()
+}
 \description{
 obtain named character vector of terms from Cell Line Ontology, omitting obsolete and trailing 'cell'
 }
