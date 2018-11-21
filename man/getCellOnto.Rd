@@ -14,7 +14,7 @@
 \alias{getHCAOnto}
 \title{load ontologies that may include non-ascii strings and therefore cannot be in data folder}
 \usage{
-getCellOnto()
+getCellOnto(useNew = TRUE)
 
 getCellLineOnto()
 
@@ -35,6 +35,9 @@ getDiseaseOnto()
 getGeneOnto()
 
 getHCAOnto()
+}
+\arguments{
+\item{useNew}{logical(1) only for getCellOnto if TRUE cell ontology of July 2018, otherwise use legacy}
 }
 \value{
 instance of ontology_index (S3) from ontologyIndex
@@ -63,10 +66,10 @@ instance of ontology_index (S3) from ontologyIndex,
 load ontologies that may include non-ascii strings and therefore cannot be in data folder
 }
 \note{
-produced from HCAO.owl at https://github.com/HumanCellAtlas/ontology as of 15 Aug 2018
+produced from HCAO.owl at https://github.com/HumanCellAtlas/ontology as of 15 Aug 2018, using python pronto module
 }
 \examples{
-co = getCellOnto()
+co = getCellOnto(useNew=TRUE)
 co
 clo = getCellLineOnto()
 length(clo$id)

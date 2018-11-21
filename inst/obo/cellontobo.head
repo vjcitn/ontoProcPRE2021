@@ -1,0 +1,20 @@
+format-version: 1.2
+data-version: releases/2018-07-07
+subsetdef: ubprop:upper_level "abstract upper-level terms not directly useful for analysis"
+synonymtypedef: HUMAN_PREFERRED "preferred term when talking about an instance of this class in Homo sapiens"
+synonymtypedef: LATIN "latin term"
+synonymtypedef: PLURAL "plural term"
+remark: Includes Ontology(OntologyID(OntologyIRI(<http://purl.obolibrary.org/obo/cl/imports/chebi_import.owl>) VersionIRI(<null>))) [Axioms: 75 Logical Axioms: 29]
+remark: Includes Ontology(OntologyID(OntologyIRI(<http://purl.obolibrary.org/obo/cl/imports/clo_import.owl>) VersionIRI(<null>))) [Axioms: 10 Logical Axioms: 3]
+remark: Includes Ontology(OntologyID(OntologyIRI(<http://purl.obolibrary.org/obo/cl/imports/go_import.owl>) VersionIRI(<null>))) [Axioms: 2974 Logical Axioms: 1328]
+remark: Includes Ontology(OntologyID(OntologyIRI(<http://purl.obolibrary.org/obo/cl/imports/ncbitaxon_import.owl>) VersionIRI(<null>))) [Axioms: 1503 Logical Axioms: 347]
+remark: Includes Ontology(OntologyID(OntologyIRI(<http://purl.obolibrary.org/obo/cl/imports/pato_import.owl>) VersionIRI(<null>))) [Axioms: 187 Logical Axioms: 65]
+remark: Includes Ontology(OntologyID(OntologyIRI(<http://purl.obolibrary.org/obo/cl/imports/pr_import.owl>) VersionIRI(<null>))) [Axioms: 2196 Logical Axioms: 219]
+remark: Includes Ontology(OntologyID(OntologyIRI(<http://purl.obolibrary.org/obo/cl/imports/ro_import.owl>) VersionIRI(<null>))) [Axioms: 387 Logical Axioms: 156]
+remark: Includes Ontology(OntologyID(OntologyIRI(<http://purl.obolibrary.org/obo/cl/imports/uberon_import.owl>) VersionIRI(<null>))) [Axioms: 28449 Logical Axioms: 9573]
+ontology: cl
+property_value: http://purl.org/dc/elements/1.1/contributor "Alexander Diehl" xsd:string
+property_value: http://purl.org/dc/elements/1.1/contributor "Ceri van Slyke" xsd:string
+property_value: http://purl.org/dc/elements/1.1/contributor "Chris Mungall" xsd:string
+property_value: http://purl.org/dc/elements/1.1/contributor "David Osumi-Sutherland" xsd:string
+property_value: http://purl.org/dc/elements/1.1/contributor "Jim Balhoff" xsd:string

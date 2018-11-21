@@ -1,6 +1,7 @@
 #' load ontologies that may include non-ascii strings and therefore cannot be in data folder
+#' @param useNew logical(1) only for getCellOnto if TRUE cell ontology of July 2018, otherwise use legacy
 #' @examples
-#' co = getCellOnto()
+#' co = getCellOnto(useNew=TRUE)
 #' co
 #' clo = getCellLineOnto()
 #' length(clo$id)
@@ -10,8 +11,12 @@
 #' length(efo$id)
 #' @return instance of ontology_index (S3) from ontologyIndex
 #' @export
-getCellOnto = function() get(load(system.file(
-      "ontoRda/cellOnto.rda", package="ontoProc")))
+getCellOnto = function(useNew=TRUE)  {
+    sfstr = "ontoRda/cellOnto.rda"
+    if (useNew) sfstr = "ontoRda/co_0718.rda"
+    get(load(system.file(
+      sfstr, package="ontoProc")))
+    }
 #' @rdname getCellOnto
 #' @aliases getCellLineOnto
 #' @return instance of ontology_index (S3) from ontologyIndex
