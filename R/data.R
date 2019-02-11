@@ -37,3 +37,16 @@
 #' names(humrna)
 #' head(humrna[,1:5])
 "humrna"
+#' PROSYM: HGNC symbol synonyms for PR (protein ontology) entries identified in Cell Ontology
+#' @docType data
+#' @format data.frame instance
+#' @source OBO Foundry
+#' @note This is a snapshot of the synonyms
+#' component of an extract_tags='everything' import of PR.
+#' The 'EXACT.*PRO-short.*:DNx' pattern is used to retrieve
+#' HGNC symbols.
+#' See ?getPROnto for more provenance information.
+#' @examples
+#' data(PROSYM)
+#' head(PROSYM)
+"PROSYM"
