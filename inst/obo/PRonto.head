@@ -1,0 +1,85 @@
+format-version: 1.2
+data-version: 57.0
+date: 05:12:2018 09:09
+saved-by: jcowart
+auto-generated-by: PRO dB
+synonymtypedef: NC-IUPHAR "Official label of the IUPHAR Nomenclature Committee" EXACT
+synonymtypedef: PRO-common-name "Label appended to organism-specific terms in place of scientific name" EXACT
+synonymtypedef: PRO-org-label "Unique short label for PRO terms for display purposes; based on organism gene symbol" EXACT
+synonymtypedef: PRO-proteoform-ftid "Synonyms for proteoforms based on use of UniProtKb feature identifier (FTId) and positions and types of modifications or variations" EXACT
+idspace: Alzforum_mut http://www.alzforum.org/mutation/
+idspace: Araport https://www.araport.org/locus/
+idspace: BFO http://purl.obolibrary.org/obo/BFO_
+idspace: BioGRID http://thebiogrid.org/
+idspace: CGNC http://birdgenenames.org/cgnc/GeneReport?id=
+idspace: CHEBI http://purl.obolibrary.org/obo/CHEBI_
+idspace: dictyBase http://dictybase.org/gene/
+idspace: DOID http://purl.obolibrary.org/obo/DOID_
+idspace: DTO http://www.drugtargetontology.org/dto/DTO_
+idspace: EcoCyc http://biocyc.org/ECOLI/NEW-IMAGE?object=
+idspace: EcoGene http://www.ecogene.org/gene/
+idspace: EMBL https://www.ebi.ac.uk/ena/data/view/
+idspace: Ensembl http://www.ensembl.org/id/
+idspace: EnsemblBacteria http://www.ensemblgenomes.org/id/
+idspace: EST https://www.ncbi.nlm.nih.gov/nucest/
+idspace: FlyBase http://flybase.org/reports/
+idspace: GenBank https://www.ncbi.nlm.nih.gov/nuccore/
+idspace: GenPept https://www.ncbi.nlm.nih.gov/protein/
+idspace: GlyTouCan https://glytoucan.org/Structures/Glycans/
+idspace: GO http://purl.obolibrary.org/obo/GO_
+idspace: HGNC http://www.genenames.org/cgi-bin/gene_symbol_report?hgnc_id=
+idspace: HIstome_ptm http://www.actrec.gov.in/histome/ptm_sp.php?ptm_sp=
+idspace: HIstome_var http://www.actrec.gov.in/histome/variants.php?variant=
+idspace: HOM http://purl.obolibrary.org/obo/HOM_
+idspace: IntAct https://www.ebi.ac.uk/intact/interaction/
+idspace: InterPro https://www.ebi.ac.uk/interpro/entry/
+idspace: iPTMnet https://research.bioinformatics.udel.edu/iptmnet/entry/
+idspace: IUPHAR http://www.guidetopharmacology.org/GRAC/
+idspace: IUPHARfam http://www.guidetopharmacology.org/GRAC/FamilyDisplayForward?familyId=
+idspace: IUPHARobj http://www.guidetopharmacology.org/GRAC/ObjectDisplayForward?objectId=
+idspace: KinBase http://kinase.com/web/current/kinbase/genes/Subfamily/
+idspace: MGI http://www.informatics.jax.org/marker/MGI:
+idspace: MOD http://purl.obolibrary.org/obo/MOD_
+idspace: MRO http://purl.obolibrary.org/obo/MRO_
+idspace: NCBIGene http://www.ncbi.nlm.nih.gov/gene/
+idspace: NCBITaxon http://purl.obolibrary.org/obo/NCBITaxon_
+idspace: OBI http://purl.obolibrary.org/obo/OBI_
+idspace: OMA http://omabrowser.org/cgi-bin/gateway.pl?f=DisplayEntry&p2=orthologs&p1=
+idspace: OMIM https://www.omim.org/entry/
+idspace: PANTHER http://www.pantherdb.org/panther/family.do?clsAccession=
+idspace: PDB https://www.rcsb.org/structure/
+idspace: Pfam http://pfam.xfam.org/family/
+idspace: PhosphoSitePlus http://www.phosphosite.org/siteAction.do?id=
+idspace: PID http://www.ndexbio.org/#/search?searchType=Networks&searchTermExpansion=false&searchString=cd8tcrpathway
+idspace: PIRSF https://pir.georgetown.edu/cgi-bin/ipcSF?id=
+idspace: PMID http://www.ncbi.nlm.nih.gov/pubmed/
+idspace: PomBase http://www.pombase.org/spombe/result/
+idspace: PR http://purl.obolibrary.org/obo/PR_
+idspace: PRINTS http://www.bioinf.manchester.ac.uk/cgi-bin/dbbrowser/sprint/searchprintss.cgi?display_opts=Prints&queryform=false&prints_accn=
+idspace: Reactome http://www.reactome.org/content/detail/
+idspace: RefSeq https://www.ncbi.nlm.nih.gov/protein/
+idspace: RGD http://rgd.mcw.edu/rgdweb/report/gene/main.html?id=
+idspace: RO http://purl.obolibrary.org/obo/RO_
+idspace: SGD http://www.yeastgenome.org/cgi-bin/locus.fpl?dbid=
+idspace: SO http://purl.obolibrary.org/obo/SO_
+idspace: TAIR http://www.arabidopsis.org/servlets/TairObject?type=locus&name=
+idspace: TDR http://repository.topdownproteomics.org/proteoforms/
+idspace: UniCarbFT http://unicarbkb.org/swissprotFT?feature=
+idspace: UniCarbKB http://unicarbkb.org/structure/
+idspace: UniProtKB http://www.uniprot.org/uniprot/
+idspace: UniProtKB_VAR https://web.expasy.org/variant_pages/
+idspace: Wikipedia https://en.wikipedia.org/wiki/
+idspace: WormBase http://www.wormbase.org/species/c_elegans/gene/
+idspace: ZFIN http://zfin.org/action/marker/view/
+synonymtypedef: PRO-proteoform-std "Synonyms for proteoforms based on use of UniProtKb accession, subsequence range, and positions and types of modifications or variations" EXACT
+synonymtypedef: PRO-short-label "Unique short label for PRO terms for display purposes; based on orthology" EXACT
+synonymtypedef: PSI-MOD-label "Unique short label curated by PSI-MOD" EXACT
+default-namespace: protein
+remark: The PRotein Ontology is licensed under CC BY 4.0. Please see http://obofoundry.org/ontology/pr for details.
+remark: Use reasoner in OBO Edit to see the correct hierarchy.
+ontology: pr
+property_value: http://purl.org/dc/terms/license http://creativecommons.org/licenses/by/4.0/
+
+[Term]
+id: Araport:AT1G01010
+name: NAC001 (Arabidopsis thaliana)

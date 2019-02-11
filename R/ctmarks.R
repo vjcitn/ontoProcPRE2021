@@ -2,13 +2,15 @@
 #' @note Prototype of harvesting of cell ontology by searching
 #' has_part, has_plasma_membrane_part, intersection_of and allied
 #' ontology relationships.  Uses shiny.
+#' @importFrom magrittr "%>%"
+#' @importFrom dplyr filter transmute left_join
 #' @export
 ctmarks = function() {
  cumu <- NULL
- require(shiny)
- require(dplyr)
- require(magrittr)
- require(ontoProc)
+# require(shiny)
+# require(dplyr)
+# require(magrittr)
+# require(ontoProc)
  if (!exists("cl")) cl <<- getCellOnto()
  if (!exists("pr")) pr <<- getPROnto()
  if (!exists("go")) go <<- getGeneOnto()
@@ -20,7 +22,7 @@ ctmarks = function() {
  clClassNames = sort(cl$name[kp])
  clClassDF = data.frame(tag=names(clClassNames), 
     text=as.character(clClassNames), stringsAsFactors=FALSE)
- clCL = clClassDF %>% filter(grepl("^CL", tag))
+ clCL = clClassDF %>% dplyr::filter(grepl("^CL", tag))
  ui = fluidPage(
   sidebarLayout(
    sidebarPanel(width=3,

@@ -1,0 +1,30 @@
+format-version: 1.2
+data-version: releases/2018-11-12
+date: 07:02:2018 10:27
+saved-by: segerdel
+auto-generated-by: OBO-Edit 2.3.1
+subsetdef: abnormal_slim "Abnormal/normal slim"
+subsetdef: absent_slim "Absent/present slim"
+subsetdef: attribute_slim "Attribute slim"
+subsetdef: cell_quality "cell_quality"
+subsetdef: disposition_slim "Disposition slim"
+subsetdef: hpo_slim "Human phenotype slim"
+subsetdef: mpath_slim "Pathology slim"
+subsetdef: relational_slim "Relational slim: types of quality that require an additional entity in order to exist"
+subsetdef: scalar_slim "Scalar slim"
+subsetdef: value_slim "Value slim"
+default-namespace: quality
+ontology: pato
+
+[Term]
+id: PATO:0000000
+name: obsolete pato
+is_obsolete: true
+
+[Term]
+id: PATO:0000001
+name: quality
+alt_id: PATO:0000072
+def: "A dependent entity that inheres in a bearer by virtue of how the bearer is related to other entities" [PATOC:GVG]
+synonym: "trait" EXACT []
+

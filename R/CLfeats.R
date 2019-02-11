@@ -24,9 +24,9 @@ plasmaPredicates = function()
 
 CLfeat = function(ont, curtag="CL:0001054", prefix="^CL", 
    preds=plasmaPredicates(), ...) {
- require(dplyr)
- require(magrittr)
- require(ontoProc)
+# require(dplyr)
+# require(magrittr)
+# require(ontoProc)
  if (!exists("pr", .GlobalEnv)) pr = getPROnto()
  if (!exists("go", .GlobalEnv)) go = getGeneOnto()
  data(PROSYM)
@@ -36,11 +36,11 @@ CLfeat = function(ont, curtag="CL:0001054", prefix="^CL",
  clClassNames = sort(ont$name[kp])
  clClassDF = data.frame(tag=names(clClassNames), 
     text=as.character(clClassNames), stringsAsFactors=FALSE)
- clCL = clClassDF %>% filter(grepl(prefix, tag))
+ clCL = clClassDF %>% dplyr::filter(grepl(prefix, tag))
  prOrGO = function(x) na.omit(c(
       pr$name[x], go$name[x]))
   #
- cltab = clCL %>% filter(text == curtag)
+ cltab = clCL %>% dplyr::filter(text == curtag)
  lackdf = data.frame(tag="", prtag="", cond="", entity="", stringsAsFactors=FALSE)
  hasdf = data.frame(tag="", prtag="", cond="", entity="", stringsAsFactors=FALSE)
  lackdfa = data.frame(tag="", prtag="", cond="", entity="", stringsAsFactors=FALSE)
@@ -92,7 +92,7 @@ CLfeat = function(ont, curtag="CL:0001054", prefix="^CL",
                               prtag=lackspar, cond="lacksPart", entity=prOrGO(lackspar), stringsAsFactors=FALSE)
 prupdate = function(x) {
    if (!inherits(x, "data.frame") | nrow(x)<1) return(x)
-   try(left_join(x, transmute(PROSYM, prtag=PRID, SYMBOL), by="prtag"))
+   try(left_join(x, dplyr::transmute(PROSYM, prtag=PRID, SYMBOL), by="prtag"))
 }
 ans = list(type=ont$name[curtag],
         has=prupdate(hasdf), lacks=prupdate(lackdf),

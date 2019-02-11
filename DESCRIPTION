@@ -10,7 +10,7 @@ Description: Support harvesting of diverse bioinformatic ontologies,
 Version: 1.5.6
 Author: Vince Carey <stvjc@channing.harvard.edu>
 Imports: Biobase, S4Vectors, methods, AnnotationDbi, stats, utils,
-	shiny, graph, Rgraphviz, ontologyPlot
+	shiny, graph, Rgraphviz, ontologyPlot, dplyr, magrittr
 Suggests: knitr, org.Hs.eg.db, org.Mm.eg.db, testthat, BiocStyle
 Depends: R (>= 3.5), ontologyIndex
 Maintainer: VJ Carey <stvjc@channing.harvard.edu>
