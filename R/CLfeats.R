@@ -37,10 +37,13 @@ CLfeat = function(ont, curtag="CL:0001054", prefix="^CL",
  clClassDF = data.frame(tag=names(clClassNames), 
     text=as.character(clClassNames), stringsAsFactors=FALSE)
  clCL = clClassDF %>% dplyr::filter(grepl(prefix, tag))
- prOrGO = function(x) na.omit(c(
+ prOrGO_OLD = function(x) na.omit(c(
       pr$name[x], go$name[x]))
+ prOrGO = function(x) {
+    mp = function(z) if (substr(z,1,2)=="GO") go$name[z] else if (substr(z,1,2)=="PR") pr$name[z] else NA
+    sapply(x, mp)
+ }
   #
- cltab = clCL %>% dplyr::filter(text == curtag)
  lackdf = data.frame(tag="", prtag="", cond="", entity="", stringsAsFactors=FALSE)
  hasdf = data.frame(tag="", prtag="", cond="", entity="", stringsAsFactors=FALSE)
  lackdfa = data.frame(tag="", prtag="", cond="", entity="", stringsAsFactors=FALSE)

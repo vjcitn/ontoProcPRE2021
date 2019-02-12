@@ -73,10 +73,11 @@ getGeneOnto = function() get(load(system.file(
 
 #' @rdname getCellOnto
 #' @aliases getHCAOnto
-#' @note getHCAOnto loads ontoRda/hcaOnto.rda produced from HCAO.owl at https://github.com/HumanCellAtlas/ontology as of 15 Aug 2018, using python pronto module
+#' @note getHCAOnto loads ontoRda/hcaOnto.rda produced from hcao.owl at https://github.com/HumanCellAtlas/ontology/releases/tag/1.0.6 2/11/2019,
+#' python pronto was used to convert OWL to OBO.
 #' @export
 getHCAOnto = function() get(load(system.file(
-      "ontoRda/hcaoOnto.rda", package="ontoProc")))
+      "ontoRda/hcaOnto.rda", package="ontoProc")))
 
 #' @rdname getCellOnto
 #' @aliases getPROnto

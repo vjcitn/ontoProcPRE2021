@@ -63,7 +63,8 @@ getOncotreeOnto loads ontoRda/oncotree.rda
 
 getDiseaseOnto loads ontoRda/diseaseOnto.rda
 
-getHCAOnto loads ontoRda/hcaOnto.rda produced from HCAO.owl at https://github.com/HumanCellAtlas/ontology as of 15 Aug 2018, using python pronto module
+getHCAOnto loads ontoRda/hcaOnto.rda produced from hcao.owl at https://github.com/HumanCellAtlas/ontology/releases/tag/1.0.6 2/11/2019,
+python pronto was used to convert OWL to OBO.
 
 getPROnto loads ontoRda/PRonto.rda, produced from http://purl.obolibrary.org/obo/pr.obo 'reasoned' ontology from OBO foundry, 02-08-2019.
 In contrast to other ontologies, this is imported via get_OBO with

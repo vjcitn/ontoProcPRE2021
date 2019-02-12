@@ -50,3 +50,11 @@
 #' data(PROSYM)
 #' head(PROSYM)
 "PROSYM"
+
+#' packDesc2019: overview of ontoProc resources
+#' @format data.frame instance
+#' @note Brief survey of functions available to load serialized
+#' ontology_index instances imported from OBO.
+#' @examples
+#' head(packDesc2019)
+"packDesc2019"

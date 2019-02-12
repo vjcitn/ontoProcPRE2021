@@ -1,0 +1,112 @@
+q()
+q()
+q()
+library(htxcomp)
+htxApp()
+q()
+library(BiocManager)
+install("BiocOncoTK")
+pancan_app()
+library(BiocOncoTK)
+pancan_app()
+library(googleAuthR)
+ls(2)
+?googleSignIn
+?googleAuthUI
+?googleAuth
+?gar_auth
+gar_auth("~/.httr_oauth")
+gar_auth("~/.httr_oauth")
+install("bigQueryR")
+library(bigQueryR)
+?bqr_auth
+bqr_auth(new_user=TRUE)
+pancan_app()
+pancan_app
+pancan_BQ
+Sys.getenv("CGC_BILLING")
+Sys.setenv("CGC_BILLING"="vince1-168719"")
+Sys.setenv("CGC_BILLING"="vince1-168719")
+Sys.getenv("CGC_BILLING")
+pancan_app()
+q()
+q()
+q()
+source("~/XMASRPROF", echo=TRUE)
+q()
+options()$error
+utils::recover
+options()$menu.graphics
+q()
+q()
+options()$error
+options(error=utils::recover)
+date)
+date()
+q()
+date()
+options()$error
+q()
+q()
+q()
+q()
+load("PROntoE.rda")
+library(ontologyIndex)
+PROntoE
+PROntoE$alt_id["PR:000001412"]
+PROntoE$name["PR:000001412"]
+PROntoE$synonym["PR:000001412"]
+PROntoE$synonym["PR:000001438"]
+length(PROntoE$synonym)
+sapply(PROntoE$synonym[1:5000], function(x) grep("PRO:DNx")) -> ii
+sapply(PROntoE$synonym[1:5000], function(x) grep("PRO:DNx",x)) -> ii
+ii[1:4]
+tail(ii)
+ss = names(PROntoE$synonym)
+ss[1:5]
+prss = grep("PR:", ss)
+length(prss)
+prss[1:4]
+PROntoE$synonym[[68333]]
+ syns = PROntoE$synonym[prss]
+sapply(syns, function(x) grep("PRO:DNx", x)) -> lk
+summary(unlist(lk))
+syns[1:5]
+unlist(lk)[1:10]
+syns[[1]]
+length(lk)
+length(syns)
+syns[[1]]
+syns[["PR:000000005"]]
+length(unlist(lk))
+length(lk)
+lk[1:10]
+is.null(lk[[1]])
+length(lk[[1]])
+lens = sapply(lk,length)
+summary(lens)
+sum(lens==0)
+which.max(lens)
+syns[[9816]]
+sapply(syns, function(x) grep("EXACT.*PRO:DNx", x)) -> lk2
+length(lk2)
+lens2 = sapply(lk2,length)
+summary(lens2)
+which.max(lens2)
+syns[[6083]]
+lk2[1:10]
+syns[[4]]
+syns[[5]]
+sapply(syns, function(x) grep("EXACT.*PRO-short:DNx", x)) -> lk3
+sapply(syns, function(x) grep("EXACT.*PRO-short.*:DNx", x)) -> lk3
+lens3 = sapply(lk3,length)
+summary(lens3)
+mean(lens3==1)
+sapply(syns, function(x) grep("EXACT.*PRO-short.*:DNx", x, value=TRUE)) -> vlk3
+vlk3[1:10]
+getwd()
+setwd("Bioconductor/Devel")
+setwd("ontoProc")
+setwd("vignettes")
+dir()
+savehistory(file="pokePROntoE.syms.hist.txt")

@@ -1,15 +1,13 @@
 ---
-title: "ontoProc: RDF ontology processing for Bioconductor"
+title: "ontoProc: Ontology interfaces for Bioconductor, with focus on cell type identification"
 author: "Vincent J. Carey, stvjc at channing.harvard.edu"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteIndexEntry{ontoProc: RDF ontology processing}
+  %\VignetteIndexEntry{biocHcaOnto: notes on ontology usage for HCA with Bioconductor}
   %\VignetteEncoding{UTF-8}
+bibliography: ontobib.bib
 output:
-  BiocStyle::pdf_document:
-    toc: yes
-    number_sections: yes
   BiocStyle::html_document:
     highlight: pygments
     number_sections: yes
@@ -17,164 +15,203 @@ output:
     toc: yes
 ---
 
-```{r setupp,echo=FALSE,results="hide"}
-suppressWarnings({
+```{r setup,echo=FALSE}
 suppressPackageStartupMessages({
+library(knitr)
 library(ontoProc)
+go = getGeneOnto()
+cl = getCellOnto()
+pr = getPROnto()
+library(ontologyPlot)
 library(BiocStyle)
-library(org.Mm.eg.db)
-library(org.Hs.eg.db)
-})
 })
 ```
 
 # Introduction
 
-The `r Biocpkg("ontoProc")` package
-includes tools for
+The ambitions of collaborative single cell biology 
+will only be achieved through the coordinated efforts 
+of many groups, to help clarify cell types 
+and dynamics in an array of functional and 
+environmental contexts.  The use of formal ontology in 
+this pursuit is well-motivated and research progress has 
+already been substantial. 
 
-- programming with ontology snapshots that are distributed with the package
-- annotating free text with ontology tags
+@Bakken2017 discuss "strategies for standardized cell type 
+representations based on the data outputs from [high-content 
+flow cytometry and single cell RNA sequencing], including 
+'context annotations' in the form of standardized experiment 
+metadata about the specimen source analyzed and marker 
+genes that serve as the most useful features 
+in machine learning-based cell type classification models."
+@Aevermann2018 describe how the FAIR principles
+can be implemented using statistical identification of necessary
+and sufficient conditions for determining cell class membership.
+They propose that Cell Ontology can be transformed
+to a broadly usable knowledgebase through the incorporation
+of accurate marker gene signatures for cell classes.
 
-Our primary objective is facilitating use of ontological
-metadata to simplify construction of formally
-annotated hierarchies of samples or
-features that should be traversed in analysis of complex
-genomic experiments.
+In this vignette, we review key concepts and tasks required to
+make progress in the adoption and application of ontological discipline
+in Bioconductor-oriented data analysis. 
 
-The ontoProc package was developed to facilitate
-the coding of an ontology-driven visualizer of transcriptomic
-patterns in single-cell RNA-seq studies ([tenXplore](http://github.com/vjcitn/tenXplore)).
+# Scope of package
 
-![dashsnap](dashboard.png)
+The following table describes the resources available with `get*`
+commands defined in ontoProc.
+<!-- use inst/scripts/desc.R to generate all but the 'purpose' which is added by hand -->
+```{r lksco}
+kable(packDesc2019)
+```
 
-# Application to cell type hierarchy
+# Methods
 
-## An enumeration of cell types
+## Conceptual overview of ontology with cell types
 
-We used the [Experimental Factor Ontology](https://www.ebi.ac.uk/efo/) 'cell type' class ([EFO_0000324](https://www.ebi.ac.uk/ols/ontologies/efo/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0000324)) to obtain
-an enumeration of cell types.  As of August 22 2017 it is an open question
-whether [Cell Ontology](http://obofoundry.org/ontology/cl.html) or
-[Cellosaurus](https://web.expasy.org/cellosaurus/) should be used for this purpose.  The author's
-subjective impression is that EFO has a simpler collection of terms for cell types,
-while Cell Ontology has a better collection of terms for types of neurons.
+__Definitions, semantics.__ For concreteness, we provide some definitions and examples.
+We use `ontology` to denote the systematic organization
+of terminology used in a conceptual domain.  The
+`Cell Ontology` is a graphical data structure with 
+carefully annotated terms as nodes and conventionally defined 
+semantic relationships among terms serving as edges.  As 
+an example, `lung ciliated cell` has URI \url{http://purl.obolibrary.org/obo/CL_1000271}.
+This URI includes a fixed-length identifier `CL_1000271` with 
+unambiguous interpretation wherever it is encountered.  There is 
+a chain of relationships from `lung ciliated cell` 
+up through `ciliated cell`, then `native cell`, then 
+`cell`, each possessing its own URI and related 
+interpretive metadata.  The relationship connecting the more precise 
+to the less precise term in this chain 
+is denoted `SubclassOf`.  `Ciliated cell` is equivalent to 
+a `native cell` that `has plasma membrane part`
+`cilium`.  Semantic characteristics of terms and relationships are 
+used to infer relationships among terms that may 
+not have relations directly specified in available ontologies.
 
-## Basic operations using ontologyIndex facilities
+__Barriers to broad adoption.__ Given the wealth of material available in biological 
+ontologies, it is somewhat surprising that formal annotation 
+is so seldom used in practice. Barriers to 
+more common use of ontology in data annotation 
+include: (i) Non-existence of exact matching between intended 
+term and terms available in ontologies of interest. 
+(ii) The practical problem of decoding ontology identifiers. 
+A GO tag or CL tag is excellent 
+for programming, but it is clumsy to co-locate 
+with the tag the associated natural language term 
+or phrase. (iii) Likelihood of disagreement of suitability 
+of terms for conditions observed at the boundaries 
+of knowledge. To help cope with the first 
+of these problems, Bioconductor's `ontologyProc` package 
+includes a function `liberalMap`
+which will search an ontology for terms lexically 
+close to some target term or phrase.  The 
+second problem can be addressed with more elaborate 
+data structures for variable annotation and programming in 
+R, and the third problem will diminish in 
+importance as the value of ontology adoption becomes 
+manifest in more applications.
 
-This package ships with an R serialization
-of an OBO representation of the [Cell Ontology](http://obofoundry.org/ontology/cl.html).
-This is created using `get_OBO` in `r CRANpkg("ontologyIndex")`.
-(For ontologies only available in OWL format, the python pronto
-package was used to convert to OBO.)
-```{r useCO}
+__Class vs. instance.__ It is important to distinguish the practice of 
+designing and maintaining ontologies from the use of 
+ontological class terms to annotate instances of the 
+concepts.  The combination of an ontology and a 
+set of annotated instances is called a knowledge 
+base.  To illustrate some of the salient distinctions 
+here, consider the cell line called A549, which 
+is established from a human lung adenocarcinoma sample.
+There is no mention of A549 in the 
+Cell Ontology.  However, A549 is present in the 
+EBI Experimental Factor Ontology as a subclass of 
+the "Homo sapiens cell line" class.  Presumably this 
+is because A549 is a class of cells 
+that are widely used experimentally, and this cell 
+line constitutes a concept deserving of mapping in 
+the universe of experimental factors.  In the universe 
+of concepts related to cell structure and function 
+_per se_, A549 is an individual that can 
+be characterized through possession of or lack of 
+properties enumerated in Cell Ontology, but it is 
+not deserving of inclusion in that ontology.
+
+## Illustration in a single-cell RNA-seq dataset
+
+The 10X Genomics corporation has distributed
+a dataset on results of sequencing 10000 PBMC from a healthy donor
+\url{https://support.10xgenomics.com/single-cell-gene-expression/datasets}.
+Subsets of the data are used in tutorials for the Seurat analytical 
+suite (@butler).
+
+### Labeling PBMC in the Seurat tutorial
+
+One result of the tutorial analysis of the 3000 cell subset is a table
+of cell types and expression-based markers of cell identity.  The
+first three columns of the table below are from 
+concluding material in the Seurat tutorial;
+the remaining columns are created by "manual" matching
+between the Seurat terms and terms found in Cell Ontology.
+
+```{r lklk}
+suppressPackageStartupMessages({
+library(biocHcaOnto)
+})
+kable(stab <- seur3kTab())
+```
+
+### Relationships asserted in the Cell Ontology
+
+Given the informally selected tags in the table above, we can
+sketch the Cell Ontology graph connecting the associated
+cell types.  The ontoProc package adds functionality to
+ontologyPlot with `make_graphNEL_from_ontology_plot`.  This
+allows use of all Rgraphviz and igraph visualization facilities
+for graphs derived from ontology structures.
+
+Here we display the PBMC cell sets reported in the Seurat tutorial.
+```{r lklklk}
 library(ontoProc)
-cellOnto = getCellOnto()
-cellOnto
-```
-At this time,
-elementary manipulations of
-the ontology involve collecting the children, siblings, or labels for given
-URIs.
-```{r useCO2}
-cochil = children_TAG("CL:0000540", cellOnto) 
-cochil
-label_TAG("CL:0000540", cellOnto)
-siblings_TAG("CL:0000540", cellOnto) 
+cl = getCellOnto()
+onto_plot2(cl, stab$tag)
 ```
 
-# Application: finding genes annotated to neuron subtypes
+### Molecular features asserted in the Cell Ontology
 
-We focus on mouse.  The neuron subtypes identified as
-OWL subclasses of "neuron" have names
-```{r getcl}
-cleanNames = function(tset) {
- slot(tset,"cleanFrame")$clean
-}
-cleanNames(cochil)
+The `CLfeats` function traces relationships and
+properties from a given Cell Ontology class.
+Briefly, each class can assert that it is the
+`intersection_of` other classes, and
+`has_part`, `lacks_part`, `has_plasma_membrane_part`,
+`lacks_plasma_membrane_part` can be asserted as
+relationships holding between cell type instances
+and cell components.  The components are often cross-referenced
+to Protein Ontology or Gene Ontology.  When the Protein Ontology
+component has a synonym for which an HGNC symbol is provided, that
+symbol is retrieved by `CLfeats`.  Here we obtain the listing
+for a mature CD1a-positive dermal dendritic cell.
+```{r lkfa}
+kable(CLfeats(cl, "CL:0002531"))
 ```
 
-We would like to see if the expression data would allow us to discriminate
-neurons of these different types.
+The `ctmarks` function starts a shiny app that generates
+tables of this sort for selected cell types.
 
-## Bridging from Cell Ontology to mouse genes
+![ctmarks snapshot](ctmarks.png)
 
-There is no formal linkage at present between terms
-of Cell Ontology and those of Gene Ontology.  Research
-on inference of tissue of origin from expression 
-signatures has led to accurate classifiers (Lee, Krishnan, Troyanskaya) and
-applications in cell mixture deconvolution (Houseman).  
-Formal work in ontology bridging has been described but the
-specific task of mapping from Cell Ontology terms
-to Gene Ontology terms has not culminated in any
-programmatically available resource.
+# Related tools
 
-We apply approximate pattern matching (agrep in R) to
-find gene ontology terms that are apparently relevant to
-cell type vocabulary terms of interest.  These are then
-mapped to gene annotation.  Simple (non-vectorized)
-functions that accomplish this in an organism-specific
-are straightforward using the OrgDb packages.  We
-serialized all GO terms for convenience with this package,
-in the data object `allGOterms`.
+Inference on the identities of cells assayed in 
+a single cell transcriptomics experiment can be performed 
+using the Bioconductor `celaref` package.  This package includes 
+a number of reference data resources providing whole-transcriptome 
+profiles of cells of known and unknown type.
+An approach to systematically structuring data on cell-type
+signatures, and conducting inference on cell types in
+new experiments, is provided in the [Hancock package](https://github.com/kevinrue/Hancock),
+under development.
 
-```{r lkfuns}
-data(allGOterms)
-cellTypeToGO("serotonergic neuron", gotab=allGOterms)
-cellTypeToGenes("serotonergic neuron", orgDb=org.Mm.eg.db, gotab=allGOterms)
-cellTypeToGenes("serotonergic neuron", orgDb=org.Hs.eg.db, gotab=allGOterms)
-```
+A CRAN package that is very useful for
+R programming with ontologies is `ontologyIndex` @Westbury2015.  This
+provides easily used functions for parsing ontologies in
+the OBO format and for performing basic queries
+on text fields and list structures.
 
-## Discrimination of neuron types: exploratory multivariate analysis
-
-At this point the API for selecting cell types, bridging to gene
-sets, and acquiring expression data, is not well-modularized.  Thus
-the best ways to get a feel for it are to use tenXplore() function,
-and to read the source code.  In brief, we often fail to find
-GO terms that approximately match, as strings, Cell Ontology
-terms corresponding to cell subtypes.  On the other hand, if we
-match on cell types, we get very large numbers of matches, which,
-at this time,
-will need to be filtered to get manageable feature sets.  We 
-will introduce tools for generating
-additional RDF to improve gene harvesting in real time.  But the
-associated statements will need to be curated.  The EBI Webulous
-system should be useful for introducing new terms that
-facilitate better connections between anatomic structures and
-sets of genes or other genomic features.
-
-# Annotation of free text
-
-The `humrna` data.frame supplied with the package is a small
-sample of metadata from NCBI Sequence Read Archive (SRA).  The
-`study title` field has been serialized as `minicorpus`.
-
-```{r lkmc}
-data(minicorpus)
-head(minicorpus)
-```
-
-There is a convention in text analysis of identifying _stop words_ that
-are unlikely to be very useful for interpretation.  The `dropStop`
-function tokenizes the study titles and eliminates stop words.
-
-```{r lksto}
-dropStop(head(minicorpus))
-```
-
-My hope is that EMBL BioSolr will help index strings of this
-type with formal ontology terms.  However, as a step in the
-general direction, we have the following examples.
-
-```{r lk1}
-library(ontoProc)
-cs = getCellosaurusOnto()
-ch = getChebiOnto()
-minicorpus[1]
-grep("P493", cs$name, value=TRUE, ignore.case=TRUE)
-grep("doxycyline", ch$name, value=TRUE, ignore.case=TRUE)
-```
-Based on PMID 10956386, P493-6 is an EBV-EBNA1 positive
-cell line, but that is not revealed in our image of
-the ontology.  Will available tools help us to automate the
-systematic mapping of study concepts?  Or will manual curation
-be necessary?
+# References
