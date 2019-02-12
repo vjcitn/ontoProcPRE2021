@@ -26,6 +26,10 @@ sym2CellOnto = function(sym, cl, pr) {
  lpma = grep(prid, unlist(cl$has_low_plasma_membrane_amount), value=TRUE)
  hpa = grep(prid, unlist(cl$has_part), value=TRUE)
  lpa = grep(prid, unlist(cl$lacks_part), value=TRUE)
+#
+# use of substr deals with the fact that unlist() will munge names.
+# should use a filter on the lists instead...
+#
  pmpdf = lmpdf = hpmadf = lpmadf = hpadf = lpadf = NULL
  if (length(pmp)>0) pmpdf = data.frame(sym=sym, cond="hasPMP", cl=substr(names(pmp),1,10), 
       type= cl$name[substr(names(pmp),1,10)])

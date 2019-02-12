@@ -196,6 +196,17 @@ tables of this sort for selected cell types.
 
 ![ctmarks snapshot](ctmarks.png)
 
+### Mapping from gene 'presence/role' to cell type
+
+The `sym2CellOnto` function helps find mention of
+given gene symbols in properties or parts of cell types.
+
+```{r lksy}
+kable(sdf <- as.data.frame(sym2CellOnto("ITGAM", cl, pr)))
+table(sdf$cond)
+kable(as.data.frame(sym2CellOnto("FOXP3", cl, pr)))
+```
+
 # Related tools
 
 Inference on the identities of cells assayed in 
