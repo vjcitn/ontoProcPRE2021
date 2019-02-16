@@ -8,9 +8,9 @@
 #' one element for each element of idvec
 #' @return a long data.frame
 #' @examples
-#' sigels = c("CLX:01"="GRIK3", "CLX:02"="NTNG1", "CLX:03"="BAGE2", 
-#'         "CLX:04"="MC4R", "CLX:05"="PAX6", "CLX:06"="TSPAN12", "CLX:07"="hSHISA8", 
-#'      "CLX:08"="SNCG", "CLX:09"="ARHGEF28", "CLX:10"="EGF")
+#' sigels = c("CL:X01"="GRIK3", "CL:X02"="NTNG1", "CL:X03"="BAGE2", 
+#'         "CL:X04"="MC4R", "CL:X05"="PAX6", "CL:X06"="TSPAN12", "CL:X07"="hSHISA8", 
+#'      "CL:X08"="SNCG", "CL:X09"="ARHGEF28", "CL:X10"="EGF")
 #' sigdf = cyclicSigset(sigels)
 #' head(sigdf)
 #' @export
@@ -33,9 +33,9 @@ cyclicSigset = function(idvec, conds=c("hasExp", "lacksExp"), tags=paste0("CL:X"
   ans
 }
 
-# sigels = c("CLX:01"="GRIK3", "CLX:02"="NTNG1", "CLX:03"="BAGE2", 
-#         "CLX:04"="MC4R", "CLX:05"="PAX6", "CLX:06"="TSPAN12", "CLX:07"="hSHISA8", 
-#      "CLX:08"="SNCG", "CLX:09"="ARHGEF28", "CLX:10"="EGF")
+# sigels = c("CL:X01"="GRIK3", "CL:X02"="NTNG1", "CL:X03"="BAGE2", 
+#         "CL:X04"="MC4R", "CL:X05"="PAX6", "CL:X06"="TSPAN12", "CL:X07"="hSHISA8", 
+#      "CL:X08"="SNCG", "CL:X09"="ARHGEF28", "CL:X10"="EGF")
 
 #' use output of cyclicSigset to generate a series of character vectors constituting OBO terms
 #' @param ldf a 'long format' data.frame as created by cyclicSigset
@@ -53,9 +53,9 @@ cyclicSigset = function(idvec, conds=c("hasExp", "lacksExp"), tags=paste0("CL:X"
 #' # a set of cell types -- names are cell type token, values are genes expressed in a
 #' # cyclic set -- each cell type expresses exactly one gene in the set and fails to
 #' # express all the other genes in the set.  See Figs 3 and 4 of Bakken et al [PMID 29322913].
-#' sigels = c("CLX:01"="GRIK3", "CLX:02"="NTNG1", "CLX:03"="BAGE2", 
-#'         "CLX:04"="MC4R", "CLX:05"="PAX6", "CLX:06"="TSPAN12", "CLX:07"="hSHISA8", 
-#'         "CLX:08"="SNCG", "CLX:09"="ARHGEF28", "CLX:10"="EGF")
+#' sigels = c("CL:X01"="GRIK3", "CL:X02"="NTNG1", "CL:X03"="BAGE2", 
+#'         "CL:X04"="MC4R", "CL:X05"="PAX6", "CL:X06"="TSPAN12", "CL:X07"="hSHISA8", 
+#'         "CL:X08"="SNCG", "CL:X09"="ARHGEF28", "CL:X10"="EGF")
 #' # create the associated long data frame
 #' ldf = cyclicSigset(sigels)
 #' # describe the abbreviations

@@ -24,9 +24,9 @@ as in Bakken et al. (2017 PMID 29322913) create gene signatures for k
 cell types, each of which fails to express all but one gene in a set of k genes
 }
 \examples{
-sigels = c("CLX:01"="GRIK3", "CLX:02"="NTNG1", "CLX:03"="BAGE2", 
-        "CLX:04"="MC4R", "CLX:05"="PAX6", "CLX:06"="TSPAN12", "CLX:07"="hSHISA8", 
-     "CLX:08"="SNCG", "CLX:09"="ARHGEF28", "CLX:10"="EGF")
+sigels = c("CL:X01"="GRIK3", "CL:X02"="NTNG1", "CL:X03"="BAGE2", 
+        "CL:X04"="MC4R", "CL:X05"="PAX6", "CL:X06"="TSPAN12", "CL:X07"="hSHISA8", 
+     "CL:X08"="SNCG", "CL:X09"="ARHGEF28", "CL:X10"="EGF")
 sigdf = cyclicSigset(sigels)
 head(sigdf)
 }

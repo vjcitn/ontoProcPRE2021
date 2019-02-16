@@ -34,9 +34,9 @@ cyclic set context.
 # a set of cell types -- names are cell type token, values are genes expressed in a
 # cyclic set -- each cell type expresses exactly one gene in the set and fails to
 # express all the other genes in the set.  See Figs 3 and 4 of Bakken et al [PMID 29322913].
-sigels = c("CLX:01"="GRIK3", "CLX:02"="NTNG1", "CLX:03"="BAGE2", 
-        "CLX:04"="MC4R", "CLX:05"="PAX6", "CLX:06"="TSPAN12", "CLX:07"="hSHISA8", 
-        "CLX:08"="SNCG", "CLX:09"="ARHGEF28", "CLX:10"="EGF")
+sigels = c("CL:X01"="GRIK3", "CL:X02"="NTNG1", "CL:X03"="BAGE2", 
+        "CL:X04"="MC4R", "CL:X05"="PAX6", "CL:X06"="TSPAN12", "CL:X07"="hSHISA8", 
+        "CL:X08"="SNCG", "CL:X09"="ARHGEF28", "CL:X10"="EGF")
 # create the associated long data frame
 ldf = cyclicSigset(sigels)
 # describe the abbreviations
