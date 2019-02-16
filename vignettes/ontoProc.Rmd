@@ -204,6 +204,80 @@ table(sdf$cond)
 kable(as.data.frame(sym2CellOnto("FOXP3", cl, pr)))
 ```
 
+## Adding terms to ontology_index structures to 'extend' Cell Ontology
+
+The task of extending an ontology is partly bureaucratic in
+nature and depends on a collection of endorsements and updates
+to centralized information structures.  In order to permit
+experimentation with interfaces and new content that may
+be quite speculative, we include an approach to combining new
+ontology 'terms' of structure similar to those endorsed in
+Cell Ontology, to ontologyIndex-based `ontology_index`
+instances.
+
+### Use case: a set of cell types defined by "diagonal expression"
+
+For a demonstration, we consider the discussion in
+@Bakken2017, of a 'diagonal' expression pattern
+defining a group of novel cell types.  A set of genes
+is identified and cells are distinguised by expressing
+exactly one gene from the set.
+
+![Diagonal expression pattern.](usecaseCyclic.png)
+
+The necessary information is collected in a vector.
+The vector is the set of genes, the name of element i
+is the tag to be associated with the type of cell that expresses gene i
+and does not express any other gene in the set.
+```{r lksig}
+sigels = c("CL:X01"="GRIK3", "CL:X02"="NTNG1", "CL:X03"="BAGE2",
+             "CL:X04"="MC4R", "CL:X05"="PAX6", "CL:X06"="TSPAN12", 
+             "CL:X07"="hSHISA8", "CL:X08"="SNCG", "CL:X09"="ARHGEF28", 
+             "CL:X10"="EGF")
+```
+
+### A data.frame defining the cell types and their properties
+
+The `cyclicSigset` function produces a data.frame instance
+connecting cell types with the genes expressed or unexpressed.
+```{r lkdfff}
+cs = cyclicSigset(sigels)
+dim(cs)
+cs[c(1:5,9:13),]
+table(cs$cond)
+```
+It is expected that a tabular layout like this will suffice to 
+handle general situations of cell type definition.
+
+### Translating the data.frame elements to OBO Term instances
+
+The most complicated aspect of novel OBO term construction is the
+proper specifications of relationships with existing ontology components.
+A prolog that is mostly shared by all terms is generated programmatically
+for the diagonal pattern task.
+```{r lklk1}
+ makeIntnProlog = function(id, ...) {
+ # make type-specific prologs as key-value pairs
+     c(  
+       sprintf("id: %s", id),
+       sprintf("name: %s-expressing cortical layer 1 interneuron, human", ...),
+       sprintf("def: '%s-expressing cortical layer 1 interneuron, human described via RNA-seq observations' [PMID 29322913]", ...),
+       "is_a: CL:0000099 ! interneuron",
+       "intersection_of: CL:0000099 ! interneuron")
+ }
+```
+The `ldfToTerms` API uses this to create a set of strings that can be parsed
+as a term.
+```{r doterm}
+pmap = c("hasExp"="has_expression_of", lacksExp="lacks_expression_of")
+head(unlist(tms <- ldfToTerms(cs, pmap, sigels, makeIntnProlog)), 20)
+```
+
+The content in tms can then be appended to the content of the Cell Ontology cl.obo as
+text for import with `ontologyIndex::get_OBO`.
+
+
+
 # Related tools
 
 Inference on the identities of cells assayed in 
