@@ -1,24 +1,24 @@
 #' app to review molecular properties of cell types via cell ontology
+#' @param cl an import of a Cell Ontology (or extended Cell Ontology) in ontology_index form
 #' @note Prototype of harvesting of cell ontology by searching
 #' has_part, has_plasma_membrane_part, intersection_of and allied
-#' ontology relationships.  Uses shiny.
+#' ontology relationships.  Uses shiny.  Can perform better if getPROnto() and getGeneOnto() values
+#' are in .GlobalEnv as pr and go respectively.
 #' @importFrom magrittr "%>%"
 #' @importFrom dplyr filter transmute left_join
+#' @return a data.frame with features for selected cell types
 #' @export
-ctmarks = function() {
+ctmarks = function(cl) {
  cumu <- NULL
 # require(shiny)
 # require(dplyr)
 # require(magrittr)
 # require(ontoProc)
- if (!exists("cl")) cl <<- getCellOnto()
  if (!exists("pr")) pr <<- getPROnto()
  if (!exists("go")) go <<- getGeneOnto()
- ppos <- which(sapply(cl$has_plasma_membrane_part,length)>0)
- pneg <- which(sapply(cl$lacks_plasma_membrane_part,length)>0)
- pposa <- which(sapply(cl$has_high_plasma_membrane_amount,length)>0)
- pnega <- which(sapply(cl$has_low_plasma_membrane_amount,length)>0)
- kp = unique(c(ppos,pneg,pposa,pnega))
+ rp = recognizedPredicates()
+ lens = lapply(rp, function(x) which(sapply(cl[[x]],length)>0))
+ kp = unique(unlist(lapply(lens,names)))
  clClassNames = sort(cl$name[kp])
  clClassDF = data.frame(tag=names(clClassNames), 
     text=as.character(clClassNames), stringsAsFactors=FALSE)
@@ -27,7 +27,7 @@ ctmarks = function() {
   sidebarLayout(
    sidebarPanel(width=3,
     helpText("CL classes, limited to those for which presence or absence
-of plasma membrane parts (or high or low plasma membrane amounts) are indicated."),
+of plasma membrane parts (or high or low plasma membrane amounts, expression, etc.) are indicated.  See ontoProc::recognizedPredicates() for full list"),
     selectInput("CLclasses", "CL classes", 
       choices = clCL$text, selected=clCL$text[1],
       multiple=FALSE),
@@ -62,7 +62,7 @@ format-version: 1.2, 2 data-version: releases/2018-07-07."
  server = function(input, output) {
   output$deriv = renderPlot({
    tag = names(cl$name[ which(cl$name == input$CLclasses) ] )
-   anc = cl$ancestors[[tag]]
+   anc = unique(c(cl$ancestors[[tag]], isachain(cl, tag))) # cl$ancestors[[tag]]
    anc = grep("^CL", anc, value=TRUE)
    drp1 = cl$ancestors["CL:0000548"][[1]] # excl ancestors of
    drp2 = cl$ancestors["CL:0000003"][[1]] # native and animal

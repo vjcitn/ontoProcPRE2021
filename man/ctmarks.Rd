@@ -4,7 +4,13 @@
 \alias{ctmarks}
 \title{app to review molecular properties of cell types via cell ontology}
 \usage{
-ctmarks()
+ctmarks(cl)
+}
+\arguments{
+\item{cl}{an import of a Cell Ontology (or extended Cell Ontology) in ontology_index form}
+}
+\value{
+a data.frame with features for selected cell types
 }
 \description{
 app to review molecular properties of cell types via cell ontology
@@ -12,5 +18,6 @@ app to review molecular properties of cell types via cell ontology
 \note{
 Prototype of harvesting of cell ontology by searching
 has_part, has_plasma_membrane_part, intersection_of and allied
-ontology relationships.  Uses shiny.
+ontology relationships.  Uses shiny.  Can perform better if getPROnto() and getGeneOnto() values
+are in .GlobalEnv as pr and go respectively.
 }

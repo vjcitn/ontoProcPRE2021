@@ -4,7 +4,7 @@ author: "Vincent J. Carey, stvjc at channing.harvard.edu"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteIndexEntry{biocHcaOnto: notes on ontology usage for HCA with Bioconductor}
+  %\VignetteIndexEntry{ontoProc: some ontology-oriented utilites with single-cell focus for Bioconductor}
   %\VignetteEncoding{UTF-8}
 bibliography: ontobib.bib
 output:
@@ -151,9 +151,6 @@ the remaining columns are created by "manual" matching
 between the Seurat terms and terms found in Cell Ontology.
 
 ```{r lklk}
-suppressPackageStartupMessages({
-library(biocHcaOnto)
-})
 kable(stab <- seur3kTab())
 ```
 

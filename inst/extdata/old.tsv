@@ -1,0 +1,9 @@
+grp	markers	seurTutType	formal	tag
+0	IL7R	CD4 T cells	cd4-positive helper t cell	CL:0000492
+1	CD14, LYZ	CD14+ Monocytes	CD14-positive monocyte	CL:0001054
+2	MS4A1	B cells	b cell	CL:0000236
+3	CD8A	CD8 T cells	cd8-positive, alpha-beta t cell	CL:0000625
+4	FCGR3A, MS4A7	FCGR3A+ Monocytes	monocyte	CL:0000576
+5	GNLY, NKG7	NK cells	natural killer cell	CL:0000623
+6	FCER1A, CST3	Dendritic Cells	dendritic cell	CL:0000451
+7	PPBP	Megakaryocytes	megakaryocyte	CL:0000556

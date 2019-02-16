@@ -24,5 +24,7 @@ of or inherited by the cell type identified in 'tag'
 }
 \examples{
 cl = getCellOnto()
+pr = getPROnto()
+go = getGeneOnto()
 CLfeats(cl, tag="CL:0001054")
 }
