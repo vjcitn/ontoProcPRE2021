@@ -17,7 +17,7 @@ test_that("cellTypeToGenes yields genes", {
   data(allGOterms)
   library(org.Hs.eg.db)
   cc = cellTypeToGenes("GABAergic neuron", allGOterms, org.Hs.eg.db)
-  expect_true(nrow(cc)==3)
+  expect_true(nrow(cc)==4)
 })
 
 test_that("children_TAG works", {
