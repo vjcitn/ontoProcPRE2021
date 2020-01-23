@@ -4,8 +4,15 @@
 \alias{makeSelectInput}
 \title{generate a selectInput control for an ontologyIndex slice}
 \usage{
-makeSelectInput(onto, term, type = "siblings", inputId, label,
-  multiple = TRUE, ...)
+makeSelectInput(
+  onto,
+  term,
+  type = "siblings",
+  inputId,
+  label,
+  multiple = TRUE,
+  ...
+)
 }
 \arguments{
 \item{onto}{ontologyIndex instance}

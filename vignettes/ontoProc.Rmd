@@ -276,7 +276,57 @@ head(unlist(tms <- ldfToTerms(cs, pmap, sigels, makeIntnProlog)), 20)
 The content in tms can then be appended to the content of the Cell Ontology cl.obo as
 text for import with `ontologyIndex::get_OBO`.
 
+## Subsetting SingleR resources using ontological mapping
 
+### A data.frame mapping from informal to formal terms
+
+Aaron Lun has produced a mapping from informal terms used in the
+Human Primary Cell Atlas to Cell Ontology tags.  We provisionally
+include a copy of this mapping in ontoProc:
+
+```{r lkmap}
+hpca_map = read.csv(system.file("extdata/hpca.csv", package="ontoProc"), strings=FALSE)
+head(hpca_map)
+```
+
+We will rename columns of this map for convenience of our `bind_formal_tags` method.
+```{r doren}
+names(hpca_map) = c("informal", "formal")  # obligatory for now
+```
+
+### Binding formal tags to the HPCA data
+
+Let's retrieve the HPCA data from SingleR:
+```{r gethpca}
+library(SingleCellExperiment)
+library(SingleR)
+hpca_sce = HumanPrimaryCellAtlasData()
+```
+Now bind the formal tags:
+```{r dobind}
+hpca_sce = bind_formal_tags(hpca_sce, "label.fine", hpca_map)
+length(unique(hpca_sce$formal))
+```
+We don't check for failed mappings:
+```{r justna}
+length(xx <- which(is.na(hpca_sce$formal)))
+if (length(xx)>0) print(colData(hpca_sce)[xx,])
+sum(hpca_sce$formal == "", na.rm=TRUE) # iPS and BM
+```
+
+### Subsetting using the class hierarchy of Cell Ontology
+
+```{r dosub}
+cell_onto = ontoProc::getCellOnto()
+hpca_mono = subset_descendants( hpca_sce, cell_onto, "^monocyte$" )
+table(hpca_mono$label.fine)
+table(hpca_mono$formal) # not much diversity
+hpca_tcell = subset_descendants( hpca_sce, cell_onto, "^T cell$" )
+table(hpca_tcell$label.fine)
+table(hpca_tcell$formal) # 
+uu = unique(hpca_tcell$formal)
+onto_plot2(cell_onto, uu)
+```
 
 # Related tools
 

@@ -4,8 +4,12 @@
 \alias{ldfToTerms}
 \title{use output of cyclicSigset to generate a series of character vectors constituting OBO terms}
 \usage{
-ldfToTerms(ldf, propmap, sigels, prologMaker = function(id, ...)
-  sprintf("id: \%s", id))
+ldfToTerms(
+  ldf,
+  propmap,
+  sigels,
+  prologMaker = function(id, ...) sprintf("id: \%s", id)
+)
 }
 \arguments{
 \item{ldf}{a 'long format' data.frame as created by cyclicSigset}
@@ -53,5 +57,5 @@ makeIntnProlog = function(id, ...) {
       "intersection_of: CL:0000099 ! interneuron")
 }
 tms = ldfToTerms(ldf, pmap, sigels, makeIntnProlog)
-cat(tms[[1]], sep="\\n")
+cat(tms[[1]], sep="\n")
 }

@@ -7,8 +7,13 @@
 \usage{
 cellTypeToGO(celltypeString, gotab, ...)
 
-cellTypeToGenes(celltypeString, gotab, orgDb, cols = c("ENSEMBL",
-  "SYMBOL"), ...)
+cellTypeToGenes(
+  celltypeString,
+  gotab,
+  orgDb,
+  cols = c("ENSEMBL", "SYMBOL"),
+  ...
+)
 }
 \arguments{
 \item{celltypeString}{character atom to be used to search GO terms using}

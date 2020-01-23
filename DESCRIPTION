@@ -7,7 +7,7 @@ Description: Support harvesting of diverse bioinformatic ontologies,
 	analyze genome-scale experiments, particularly cell x compound 
         screens.  Another purpose is to strengthen development of 
 	compelling use cases for richer interfaces to emerging ontologies.
-Version: 1.9.0
+Version: 1.9.1
 Author: Vince Carey <stvjc@channing.harvard.edu>
 Imports: Biobase, S4Vectors, methods, AnnotationDbi, stats, utils,
 	shiny, graph, Rgraphviz, ontologyPlot, dplyr, magrittr
@@ -18,6 +18,6 @@ License: Artistic-2.0
 LazyLoad: yes
 LazyData: yes
 biocViews: Infrastructure, GO
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.2
 VignetteBuilder: knitr
 Encoding: UTF-8

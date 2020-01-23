@@ -5,8 +5,11 @@
 \title{as in Bakken et al. (2017 PMID 29322913) create gene signatures for k
 cell types, each of which fails to express all but one gene in a set of k genes}
 \usage{
-cyclicSigset(idvec, conds = c("hasExp", "lacksExp"),
-  tags = paste0("CL:X", 1:length(idvec)))
+cyclicSigset(
+  idvec,
+  conds = c("hasExp", "lacksExp"),
+  tags = paste0("CL:X", 1:length(idvec))
+)
 }
 \arguments{
 \item{idvec}{character vector of identifiers, must have names() set to identify cells bearing genes}
