@@ -1,6 +1,8 @@
 isLeaf = function(x, ont) {
  ch = children(x, ont);
- is.na(ch) || length(ch)<1 
+ if (is.na(ch[1])) return(TRUE)
+ if (length(ch)<1) return(TRUE) 
+ return(FALSE)
 }
 
 children = function(x, ont) ont$children[[x]]
