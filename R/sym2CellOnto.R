@@ -17,7 +17,7 @@ sym2CellOnto = function(sym, cl, pr) {
  requireNamespace("S4Vectors")
  stopifnot(length(sym)==1, inherits(cl, "ontology_index"),
     inherits(pr, "ontology_index"))
- lk = try((PROSYM %>% filter(SYMBOL == sym)))
+ lk = try((ontoProc::PROSYM %>% filter(SYMBOL == sym)))
  if (nrow(lk)==0) stop("can't resolve sym")
  prid = lk$PRID
  pmp = grep(prid, unlist(cl$has_plasma_membrane_part), value=TRUE)

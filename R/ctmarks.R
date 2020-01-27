@@ -6,6 +6,7 @@
 #' are in .GlobalEnv as pr and go respectively.
 #' @importFrom magrittr "%>%"
 #' @importFrom dplyr filter transmute left_join
+#' @importFrom DT renderDataTable dataTableOutput
 #' @return a data.frame with features for selected cell types
 #' @export
 ctmarks = function(cl) {
@@ -14,8 +15,14 @@ ctmarks = function(cl) {
 # require(dplyr)
 # require(magrittr)
 # require(ontoProc)
- if (!exists("pr")) pr <<- getPROnto()
- if (!exists("go")) go <<- getGeneOnto()
+ if (!exists("pr")) {
+  message("acquiring protein ontology")
+  pr <<- getPROnto()
+  }
+ if (!exists("go")) {
+  message("acquiring GO")
+  go <<- getGeneOnto()
+  }
  rp = recognizedPredicates()
  lens = lapply(rp, function(x) which(sapply(cl[[x]],length)>0))
  kp = unique(unlist(lapply(lens,names)))
@@ -40,7 +47,7 @@ of plasma membrane parts (or high or low plasma membrane amounts, expression, et
      tabPanel("tags", 
         helpText("The table generated here consists of information obtained about the query cell type by traversing the 'intersection_of' Cell Ontology elements associated with it.  When multiple distinct entries are present in the 'tag' and 'name' fields, the properties of the query cell type are asserted to be the intersection of the properties of the named additional cell types.  'SYMBOL' values are obtained for PR: entries that have a
 EXACT PRO-short-label [PRO:DNx] annotation, and are missing for other entries."),
-        dataTableOutput("picks")),
+        DT::dataTableOutput("picks")),
      tabPanel("about", helpText("The intention of this app is to
 navigate the Cell Ontology, and its formally linked companions Protein
 Ontology and Gene Ontology, for developing views of molecular components
@@ -70,7 +77,7 @@ format-version: 1.2, 2 data-version: releases/2018-07-07."
    #onto_plot(cl, intersect(setdiff(anc,drp),clCL$tag))
    onto_plot2(cl, setdiff(anc,drp))
    })
-  output$picks = renderDataTable({
+  output$picks = DT::renderDataTable({
     curtag = (clCL %>% filter(text == input$CLclasses))[["tag"]]
     ans = CLfeats(cl, curtag)
     cumu <<- rbind(cumu, ans)

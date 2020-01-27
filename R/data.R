@@ -1,12 +1,11 @@
 #' allGOterms: data.frame with ids and terms
-#' @importFrom utils data
+#' @importFrom utils data read.delim
 #' @docType data
 #' @format data.frame instance
 #' @source This is a snapshot of all the terms available from 
 #' GO.db (3.4.2), August 2017, using keys(GO.db, keytype="TERM").
 #' @examples
-#' data(allGOterms)
-#' head(allGOterms)
+#' head(ontoProc::allGOterms)
 "allGOterms"
 #' stopWords: vector of stop words from xpo6.com
 #' @docType data
@@ -47,8 +46,7 @@
 #' HGNC symbols.
 #' See ?getPROnto for more provenance information.
 #' @examples
-#' data(PROSYM)
-#' head(PROSYM)
+#' head(ontoProc::PROSYM)
 "PROSYM"
 
 #' packDesc2019: overview of ontoProc resources

@@ -19,7 +19,7 @@
 #' @importFrom Biobase selectSome
 #' @importClassesFrom S4Vectors DataFrame
 #' @importFrom S4Vectors DataFrame
-#' @importFrom methods show new
+#' @importFrom methods show new as
 #' @return instance of TermSet
 #' @exportClass TermSet
 setClass("TermSet", representation(ontoTags="character", 
@@ -122,10 +122,9 @@ children_TAG = function(Tagstring="EFO:1001209", ontology ) {
 #' @note Very primitive, uses agrep to try to find relevant terms.
 #' @return data.frame
 #' @examples
-#' data(allGOterms)
 #' library(org.Hs.eg.db)
-#' head(cellTypeToGO("serotonergic neuron", allGOterms))
-#' head(cellTypeToGenes("serotonergic neuron", allGOterms, org.Hs.eg.db))
+#' head(cellTypeToGO("serotonergic neuron", ontoProc::allGOterms))
+#' head(cellTypeToGenes("serotonergic neuron", ontoProc::allGOterms, org.Hs.eg.db))
 #' @export
 cellTypeToGO = function(celltypeString, gotab,...) {
  gotab[agrep(celltypeString, gotab[,2],...),]

@@ -22,7 +22,6 @@ HGNC symbols.
 See ?getPROnto for more provenance information.
 }
 \examples{
-data(PROSYM)
-head(PROSYM)
+head(ontoProc::PROSYM)
 }
 \keyword{datasets}

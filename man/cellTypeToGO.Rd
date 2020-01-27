@@ -39,8 +39,7 @@ utilities for approximate matching of cell type terms to GO categories and annot
 Very primitive, uses agrep to try to find relevant terms.
 }
 \examples{
-data(allGOterms)
 library(org.Hs.eg.db)
-head(cellTypeToGO("serotonergic neuron", allGOterms))
-head(cellTypeToGenes("serotonergic neuron", allGOterms, org.Hs.eg.db))
+head(cellTypeToGO("serotonergic neuron", ontoProc::allGOterms))
+head(cellTypeToGenes("serotonergic neuron", ontoProc::allGOterms, org.Hs.eg.db))
 }

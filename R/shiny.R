@@ -1,5 +1,5 @@
 #' generate a selectInput control for an ontologyIndex slice
-#' @import shiny
+#' @rawNamespace import("shiny", except=c("dataTableOutput", "renderDataTable"))
 #' @param onto ontologyIndex instance
 #' @param term character(1) term used as basis for term list option set in the control
 #' @param inputId character(1) for use in server

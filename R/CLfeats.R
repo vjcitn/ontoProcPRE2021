@@ -54,7 +54,6 @@ CLfeat = function(ont, curtag="CL:0001054", prefix="^CL",
 # require(ontoProc)
  if (!exists("pr", .GlobalEnv)) pr = getPROnto()
  if (!exists("go", .GlobalEnv)) go = getGeneOnto()
- data(PROSYM)
  kpl = lapply(preds, function(x)
          which(sapply(ont[[x]], length)>0))
  kp = unique(unlist(kpl))
@@ -73,6 +72,7 @@ CLfeat = function(ont, curtag="CL:0001054", prefix="^CL",
  dflist = lapply(recpred, function(x)
      data.frame(tag="", prtag="", cond="", entity="", stringsAsFactors=FALSE))
  names(dflist) = recpred
+ #print(dflist)
   #
 # lackdf = data.frame(tag="", prtag="", cond="", entity="", stringsAsFactors=FALSE)
 # hasdf = data.frame(tag="", prtag="", cond="", entity="", stringsAsFactors=FALSE)
@@ -148,7 +148,7 @@ dfl = lapply(1:numdf, function(x) {
 #                              prtag=lackspar, cond="lacksPart", entity=prOrGO(lackspar), stringsAsFactors=FALSE)
 prupdate = function(x) {
    if (is.null(x) || !inherits(x, "data.frame") || nrow(x)<1) return(x)
-   try(left_join(x, dplyr::transmute(PROSYM, prtag=PRID, SYMBOL), by="prtag"))
+   try(left_join(x, dplyr::transmute(ontoProc::PROSYM, prtag=PRID, SYMBOL), by="prtag"))
 }
 ans = lapply(dfl, prupdate)
 lkta = lapply(ans, function(x) x$tag[1])
@@ -171,7 +171,8 @@ ans = do.call(rbind, ans)
 #          ans$haspart, ans$lackspart))
 bad = which(ans$tag=="")
 if (length(bad)>0) ans = ans[-bad,,drop=FALSE]
-cbind(ans, name=ont$name[curtag])
+#cbind(ans, name=ont$name[curtag])
+data.frame(ans, name=as.character(ont$name[curtag]))
 }
 
 #' produce a data.frame of features relevant to a Cell Ontology class
