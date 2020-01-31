@@ -5,7 +5,13 @@
 \title{subset a SummarizedExperiment to which ontology tags have been bound using 'bind_formal_tags',
 obtaining the 'descendants' of the class of interest}
 \usage{
-subset_descendants(se, onto, class_name, class_tag)
+subset_descendants(
+  se,
+  onto,
+  class_name,
+  class_tag,
+  formal_cd_name = "label.ont"
+)
 }
 \arguments{
 \item{se}{SummarizedExperiment instance}
@@ -15,6 +21,8 @@ subset_descendants(se, onto, class_name, class_tag)
 \item{class_name}{character(1) if 'class_tag' is missing, this will be grepped in onto[["name"]] to find class and its descendants}
 
 \item{class_tag}{character(1) used if given to identify "ontological descendants" of this term in se}
+
+\item{formal_cd_name}{character(1) tells name used for ontology tag column in `colData(se)`}
 }
 \value{
 instance of SummarizedExperiment

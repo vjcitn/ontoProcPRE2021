@@ -16,7 +16,7 @@ bind_formal_tags(se, informal, tagmap, force = FALSE)
 \item{sce}{SummarizedExperiment instance}
 }
 \value{
-SummarizedExperiment instance with a new colData column 'formal' giving
+SummarizedExperiment instance with a new colData column 'label.ont' giving
 the formal tags associated with each sample
 }
 \description{

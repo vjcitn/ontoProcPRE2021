@@ -5,11 +5,12 @@
 #' @param onto representation of an ontology using representation from ontologyIndex package
 #' @param class_name character(1) if 'class_tag' is missing, this will be grepped in onto[["name"]] to find class and its descendants
 #' @param class_tag character(1) used if given to identify "ontological descendants" of this term in se 
+#' @param formal_cd_name character(1) tells name used for ontology tag column in `colData(se)`
 #' @return instance of SummarizedExperiment
 #' @export
-subset_descendants = function(se, onto, class_name, class_tag) {
-# verify 'formal' exists in se
- stopifnot("formal" %in% names(colData(se)))
+subset_descendants = function(se, onto, class_name, class_tag, formal_cd_name='label.ont') {
+# verify [formal_cd_name] exists in se
+ stopifnot(formal_cd_name %in% names(colData(se)))
 # find the class tag if not supplied
  if (missing(class_tag)) {
    inds = grep(class_name, onto[["name"]])
@@ -19,6 +20,6 @@ subset_descendants = function(se, onto, class_name, class_tag) {
    class_tag = names(onto[["name"]][inds])
  }
  desc = get_descendants(onto, class_tag)
- se[, which(se$formal %in% desc)]
+ se[, which(se[[formal_cd_name]] %in% desc)]
 }
 

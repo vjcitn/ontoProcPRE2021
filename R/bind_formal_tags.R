@@ -3,7 +3,7 @@
 #' @param informal character(1) name of colData element with uncontrolled vocabulary
 #' @param tagmap data.frame with columns 'informal' and 'formal'
 #' @param force logical(1), defaults to FALSE; if TRUE, allows clobbering existing colData variable named "formal"
-#' @return SummarizedExperiment instance with a new colData column 'formal' giving
+#' @return SummarizedExperiment instance with a new colData column 'label.ont' giving
 #' the formal tags associated with each sample
 #' @note This function will fail if the value of `informal` is not among the
 #' colData variable names, or if "formal" is among the colData variable names.
@@ -15,6 +15,6 @@ bind_formal_tags = function(se, informal, tagmap, force=FALSE) {
   if (!(all(c("informal", "formal") %in% names(tagmap)))) stop("tagmap must include columns named 'formal' and 'informal'")
   mapv = tagmap[["formal"]]
   names(mapv) = tagmap[["informal"]]
-  colData(se)$formal = mapv[se[[informal]]]
+  colData(se)$label.ont = mapv[se[[informal]]]
   se
 }
