@@ -2,24 +2,24 @@
 % Please edit documentation in R/subset_descendants.R
 \name{subset_descendants}
 \alias{subset_descendants}
-\title{subset a SingleCellExperiment to which ontology tags have been bound using 'bind_formal_tags',
+\title{subset a SummarizedExperiment to which ontology tags have been bound using 'bind_formal_tags',
 obtaining the 'descendants' of the class of interest}
 \usage{
-subset_descendants(sce, onto, class_name, class_tag)
+subset_descendants(se, onto, class_name, class_tag)
 }
 \arguments{
-\item{sce}{SingleCellExperiment instance}
+\item{se}{SummarizedExperiment instance}
 
 \item{onto}{representation of an ontology using representation from ontologyIndex package}
 
 \item{class_name}{character(1) if 'class_tag' is missing, this will be grepped in onto[["name"]] to find class and its descendants}
 
-\item{class_tag}{character(1) used if given to identify "ontological descendants" of this term in sce}
+\item{class_tag}{character(1) used if given to identify "ontological descendants" of this term in se}
 }
 \value{
-instance of SingleCellExperiment
+instance of SummarizedExperiment
 }
 \description{
-subset a SingleCellExperiment to which ontology tags have been bound using 'bind_formal_tags',
+subset a SummarizedExperiment to which ontology tags have been bound using 'bind_formal_tags',
 obtaining the 'descendants' of the class of interest
 }

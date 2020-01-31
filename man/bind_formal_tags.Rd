@@ -2,25 +2,25 @@
 % Please edit documentation in R/bind_formal_tags.R
 \name{bind_formal_tags}
 \alias{bind_formal_tags}
-\title{add mapping from informal to formal cell type tags to a SingleCellExperiment colData}
+\title{add mapping from informal to formal cell type tags to a SummarizedExperiment colData}
 \usage{
-bind_formal_tags(sce, informal, tagmap, force = FALSE)
+bind_formal_tags(se, informal, tagmap, force = FALSE)
 }
 \arguments{
-\item{sce}{SingleCellExperiment instance}
-
 \item{informal}{character(1) name of colData element with uncontrolled vocabulary}
 
 \item{tagmap}{data.frame with columns 'informal' and 'formal'}
 
 \item{force}{logical(1), defaults to FALSE; if TRUE, allows clobbering existing colData variable named "formal"}
+
+\item{sce}{SummarizedExperiment instance}
 }
 \value{
-SingleCellExperiment instance with a new colData column 'formal' giving
+SummarizedExperiment instance with a new colData column 'formal' giving
 the formal tags associated with each sample
 }
 \description{
-add mapping from informal to formal cell type tags to a SingleCellExperiment colData
+add mapping from informal to formal cell type tags to a SummarizedExperiment colData
 }
 \note{
 This function will fail if the value of `informal` is not among the
