@@ -296,19 +296,23 @@ names(hpca_map) = c("informal", "formal")  # obligatory for now
 
 ### Binding formal tags to the HPCA data
 
+I am turning this code off for now because there is no
+standard approach to getting the mapping from the SummarizedExperment
+yet.  When SingleR merges the 'standardized' branch, this will come back.
+
 Let's retrieve the HPCA data from SingleR:
-```{r gethpca}
+```{r gethpca, eval=FALSE}
 library(SingleCellExperiment)
 library(SingleR)
 hpca_sce = HumanPrimaryCellAtlasData()
 ```
 Now bind the formal tags:
-```{r dobind}
+```{r dobind, eval=FALSE}
 hpca_sce = bind_formal_tags(hpca_sce, "label.fine", hpca_map)
 length(unique(hpca_sce$formal))
 ```
 We don't check for failed mappings:
-```{r justna}
+```{r justna, eval=FALSE}
 length(xx <- which(is.na(hpca_sce$formal)))
 if (length(xx)>0) print(colData(hpca_sce)[xx,])
 sum(hpca_sce$formal == "", na.rm=TRUE) # iPS and BM
@@ -316,7 +320,7 @@ sum(hpca_sce$formal == "", na.rm=TRUE) # iPS and BM
 
 ### Subsetting using the class hierarchy of Cell Ontology
 
-```{r dosub}
+```{r dosub, eval=FALSE}
 cell_onto = ontoProc::getCellOnto()
 hpca_mono = subset_descendants( hpca_sce, cell_onto, "^monocyte$" )
 table(hpca_mono$label.fine)
