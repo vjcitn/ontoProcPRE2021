@@ -7,13 +7,13 @@
 bind_formal_tags(se, informal, tagmap, force = FALSE)
 }
 \arguments{
+\item{se}{SummarizedExperiment instance}
+
 \item{informal}{character(1) name of colData element with uncontrolled vocabulary}
 
 \item{tagmap}{data.frame with columns 'informal' and 'formal'}
 
 \item{force}{logical(1), defaults to FALSE; if TRUE, allows clobbering existing colData variable named "formal"}
-
-\item{sce}{SummarizedExperiment instance}
 }
 \value{
 SummarizedExperiment instance with a new colData column 'label.ont' giving

@@ -13,8 +13,6 @@ connect_classes = function(ont, se1, se2) {
  t2 = se2$label.ont
  # remove NA and duplicates
  acno = function(x) as.character(na.omit(x))
- require(graph)
- require(ontologyIndex)
  t1 = acno(unique(t1))
  t2 = acno(unique(t2))
  # trace is_a relationships between classes in SEs
