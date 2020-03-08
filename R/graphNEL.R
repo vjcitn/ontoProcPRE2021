@@ -52,7 +52,7 @@ onto_plot2 = function(ont, terms2use, cex=.8, ...) {
   pl = ontologyPlot::onto_plot(ont, terms2use, ...)
   gnel = make_graphNEL_from_ontology_plot(pl)
   gnel = improveNodes(gnel, ont)
-  graph.par(list(nodes=list(shape="plaintext", cex=.8)))
+  graph.par(list(nodes=list(shape="plaintext", cex=cex)))
   gnel = layoutGraph(gnel)
   renderGraph(gnel)
 }
