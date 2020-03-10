@@ -42,6 +42,7 @@ improveNodes = function(g,ont) {
 #' @param terms2use character vector
 #' @param cex numeric(1) defaults to .8, supplied to Rgraphviz::graph.par
 #' @param ... passed to onto_plot of ontologyPlot
+#' @return graphNEL instance (invisibly)
 #' @examples
 #' cl = getCellOnto()
 #' cl3k = c("CL:0000492", "CL:0001054", "CL:0000236", "CL:0000625",
@@ -55,5 +56,6 @@ onto_plot2 = function(ont, terms2use, cex=.8, ...) {
   graph.par(list(nodes=list(shape="plaintext", cex=cex)))
   gnel = layoutGraph(gnel)
   renderGraph(gnel)
+  invisible(gnel)
 }
 

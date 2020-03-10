@@ -15,6 +15,9 @@ onto_plot2(ont, terms2use, cex = 0.8, ...)
 
 \item{...}{passed to onto_plot of ontologyPlot}
 }
+\value{
+graphNEL instance (invisibly)
+}
 \description{
 high-level use of graph/Rgraphviz for rendering ontology relations
 }
