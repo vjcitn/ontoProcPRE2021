@@ -4,7 +4,9 @@
 \name{stopWords}
 \alias{stopWords}
 \title{stopWords: vector of stop words from xpo6.com}
-\format{character vector}
+\format{
+character vector
+}
 \source{
 \url{http://xpo6.com/list-of-english-stop-words/}
 }

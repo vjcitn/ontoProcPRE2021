@@ -4,7 +4,9 @@
 \name{minicorpus}
 \alias{minicorpus}
 \title{minicorpus: a vector of annotation strings found in 'study title' of SRA metadata.}
-\format{character vector}
+\format{
+character vector
+}
 \source{
 NCBI SRA
 }

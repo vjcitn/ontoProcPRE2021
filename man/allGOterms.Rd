@@ -4,7 +4,9 @@
 \name{allGOterms}
 \alias{allGOterms}
 \title{allGOterms: data.frame with ids and terms}
-\format{data.frame instance}
+\format{
+data.frame instance
+}
 \source{
 This is a snapshot of all the terms available from 
 GO.db (3.4.2), August 2017, using keys(GO.db, keytype="TERM").

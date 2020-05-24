@@ -4,7 +4,9 @@
 \name{PROSYM}
 \alias{PROSYM}
 \title{PROSYM: HGNC symbol synonyms for PR (protein ontology) entries identified in Cell Ontology}
-\format{data.frame instance}
+\format{
+data.frame instance
+}
 \source{
 OBO Foundry
 }

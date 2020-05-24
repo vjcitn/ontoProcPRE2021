@@ -4,7 +4,9 @@
 \name{humrna}
 \alias{humrna}
 \title{humrna: a data.frame of SRA metadata related to RNA-seq in humans}
-\format{data.frame}
+\format{
+data.frame
+}
 \source{
 NCBI SRA
 }

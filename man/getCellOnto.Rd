@@ -16,7 +16,11 @@
 \alias{getPATOnto}
 \title{load ontologies that may include non-ascii strings and therefore cannot be in data folder}
 \usage{
-getCellOnto(useNew = TRUE)
+getCellOnto(
+  useNew = TRUE,
+  newest = FALSE,
+  cache = BiocFileCache::BiocFileCache()
+)
 
 getCellLineOnto()
 
@@ -44,6 +48,11 @@ getPATOnto()
 }
 \arguments{
 \item{useNew}{logical(1) only for getCellOnto if TRUE cell ontology of July 2018, otherwise use legacy}
+
+\item{newest}{logical(1) if TRUE will use BiocFileCache to retrieve/use latest cl-simple.obo; overrides}
+
+\item{cache}{instance of BiocFileCache
+useNew}
 }
 \value{
 instance of ontology_index (S3) from ontologyIndex

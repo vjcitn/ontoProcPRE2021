@@ -4,7 +4,9 @@
 \name{packDesc2019}
 \alias{packDesc2019}
 \title{packDesc2019: overview of ontoProc resources}
-\format{data.frame instance}
+\format{
+data.frame instance
+}
 \usage{
 packDesc2019
 }
