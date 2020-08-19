@@ -8,11 +8,11 @@
 #' common tags, the class names as column `clname`, and
 #' counts of samples bearing the given tags in remaining columns.
 #' @examples
-#' if (requireNamespace("SingleR")) {
-#'   imm = SingleR::ImmGenData()
+#' if (requireNamespace("celldex")) {
+#'   imm = celldex::ImmGenData()
 #'   if ("label.ont" %in% names(colData(imm))) {
 #'     cl = getCellOnto()
-#'     blu = SingleR::BlueprintEncodeData()
+#'     blu = celldex::BlueprintEncodeData()
 #'     common_classes( cl, imm, blu )
 #'     }
 #'   }

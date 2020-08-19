@@ -15,7 +15,7 @@
 #' head(sigdf)
 #' @export
 cyclicSigset = function(idvec, conds=c("hasExp", "lacksExp"), tags=paste0("CL:X", 1:length(idvec))) {
-  combdf = expand.grid(sigels, sigels,
+  combdf = expand.grid(idvec, idvec,
         stringsAsFactors=FALSE)
   todrp = which(apply(combdf,1,function(x)x[1]==x[2]))
   combdf = combdf[-todrp,]

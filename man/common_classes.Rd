@@ -24,11 +24,11 @@ counts of samples bearing the given tags in remaining columns.
 list and count samples with common ontological annotation in two SEs
 }
 \examples{
-if (requireNamespace("SingleR")) {
-  imm = SingleR::ImmGenData()
+if (requireNamespace("celldex")) {
+  imm = celldex::ImmGenData()
   if ("label.ont" \%in\% names(colData(imm))) {
     cl = getCellOnto()
-    blu = SingleR::BlueprintEncodeData()
+    blu = celldex::BlueprintEncodeData()
     common_classes( cl, imm, blu )
     }
   }
