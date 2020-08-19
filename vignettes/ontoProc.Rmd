@@ -15,19 +15,9 @@ output:
     toc: yes
 ---
 
-```{r setup,echo=FALSE}
-suppressPackageStartupMessages({
-library(knitr)
-library(ontoProc)
-go = getGeneOnto()
-cl = getCellOnto()
-pr = getPROnto()
-library(ontologyPlot)
-library(BiocStyle)
-})
-```
-
 # Introduction
+
+
 
 The ambitions of collaborative single cell biology 
 will only be achieved through the coordinated efforts 
@@ -54,6 +44,20 @@ of accurate marker gene signatures for cell classes.
 In this vignette, we review key concepts and tasks required to
 make progress in the adoption and application of ontological discipline
 in Bioconductor-oriented data analysis. 
+
+We'll start by setting up some package attachments and
+ontology objects.
+```{r setup}
+suppressPackageStartupMessages({
+library(knitr)
+library(ontoProc)
+go = getGeneOnto()
+cl = getCellOnto()
+pr = getPROnto()
+library(ontologyPlot)
+library(BiocStyle)
+})
+```
 
 # Scope of package
 
@@ -301,34 +305,34 @@ standard approach to getting the mapping from the SummarizedExperment
 yet.  When SingleR merges the 'standardized' branch, this will come back.
 
 Let's retrieve the HPCA data from SingleR:
-```{r gethpca, eval=FALSE}
+```{r gethpca, eval=TRUE}
 library(SingleCellExperiment)
-library(SingleR)
+library(celldex)
 hpca_sce = HumanPrimaryCellAtlasData()
 ```
 Now bind the formal tags:
-```{r dobind, eval=FALSE}
+```{r dobind, eval=TRUE}
 hpca_sce = bind_formal_tags(hpca_sce, "label.fine", hpca_map)
-length(unique(hpca_sce$formal))
+length(unique(hpca_sce$label.ont))
 ```
 We don't check for failed mappings:
-```{r justna, eval=FALSE}
-length(xx <- which(is.na(hpca_sce$formal)))
+```{r justna, eval=TRUE}
+length(xx <- which(is.na(hpca_sce$label.ont)))
 if (length(xx)>0) print(colData(hpca_sce)[xx,])
-sum(hpca_sce$formal == "", na.rm=TRUE) # iPS and BM
+sum(hpca_sce$label.ont == "", na.rm=TRUE) # iPS and BM
 ```
 
 ### Subsetting using the class hierarchy of Cell Ontology
 
-```{r dosub, eval=FALSE}
+```{r dosub, eval=TRUE}
 cell_onto = ontoProc::getCellOnto()
 hpca_mono = subset_descendants( hpca_sce, cell_onto, "^monocyte$" )
 table(hpca_mono$label.fine)
-table(hpca_mono$formal) # not much diversity
+table(hpca_mono$label.ont) # not much diversity
 hpca_tcell = subset_descendants( hpca_sce, cell_onto, "^T cell$" )
 table(hpca_tcell$label.fine)
-table(hpca_tcell$formal) # 
-uu = unique(hpca_tcell$formal)
+table(hpca_tcell$label.ont) # 
+uu = unique(hpca_tcell$label.ont)
 onto_plot2(cell_onto, uu)
 ```
 
