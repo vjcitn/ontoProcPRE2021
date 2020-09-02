@@ -19,7 +19,8 @@
 getCellOnto(
   useNew = TRUE,
   newest = FALSE,
-  cache = BiocFileCache::BiocFileCache()
+  cache = BiocFileCache::BiocFileCache(),
+  use0718 = FALSE
 )
 
 getCellLineOnto()
@@ -47,12 +48,13 @@ getPROnto()
 getPATOnto()
 }
 \arguments{
-\item{useNew}{logical(1) only for getCellOnto if TRUE cell ontology of July 2018, otherwise use legacy}
+\item{useNew}{logical(1) only for getCellOnto if TRUE return ontology_index instance of cell ontology 2.1 of May 21 2020, defaults to TRUE}
 
 \item{newest}{logical(1) if TRUE will use BiocFileCache to retrieve/use latest cl-simple.obo; overrides}
 
-\item{cache}{instance of BiocFileCache
-useNew}
+\item{cache}{instance of BiocFileCache}
+
+\item{use0718}{logical(1) only for getCellOnto if TRUE cell ontology of July 2018}
 }
 \value{
 instance of ontology_index (S3) from ontologyIndex
@@ -63,6 +65,9 @@ instance of ontology_index (S3) from ontologyIndex
 load ontologies that may include non-ascii strings and therefore cannot be in data folder
 }
 \note{
+You may want to try `bfcupdate` on the BiocFileCache element.
+useNew
+
 Provenance information is kept in the form
 of excerpts of top records in `dir(system.file("obo", package="ontoProc"), full=TRUE)`
 

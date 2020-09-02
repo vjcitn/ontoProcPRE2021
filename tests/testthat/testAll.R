@@ -23,8 +23,7 @@ test_that("cellTypeToGenes yields genes", {
 test_that("children_TAG works", {
   co = getCellOnto()
   chn = children_TAG("CL:0000540", co)
-#  expect_true(nrow(chn@cleanFrame)==34) # pre 2018
-  expect_true(nrow(chn@cleanFrame)==33)
+  expect_true(nrow(chn@cleanFrame)==34) 
 })
 
 test_that("onto generators work", {
@@ -42,8 +41,7 @@ test_that("label_TAG works", {
 test_that("secLevGen works", {
   co = getCellOnto()
   chn = secLevGen("neuron", co)
-#  expect_true(nrow(chn@cleanFrame)==34)
-  expect_true(nrow(chn@cleanFrame)==33)
+  expect_true(nrow(chn@cleanFrame)==34)
 })
   
 

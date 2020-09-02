@@ -6,9 +6,11 @@ add_cache_cl_simple = function(cache = BiocFileCache::BiocFileCache(),
 
 #' load ontologies that may include non-ascii strings and therefore cannot be in data folder
 #' @import BiocFileCache
-#' @param useNew logical(1) only for getCellOnto if TRUE cell ontology of July 2018, otherwise use legacy
+#' @param useNew logical(1) only for getCellOnto if TRUE return ontology_index instance of cell ontology 2.1 of May 21 2020, defaults to TRUE
+#' @param use0718 logical(1) only for getCellOnto if TRUE cell ontology of July 2018
 #' @param newest logical(1) if TRUE will use BiocFileCache to retrieve/use latest cl-simple.obo; overrides
 #' @param cache instance of BiocFileCache
+#' @note You may want to try `bfcupdate` on the BiocFileCache element.
 #' useNew
 #' @examples
 #' co = getCellOnto(useNew=TRUE)
@@ -23,7 +25,8 @@ add_cache_cl_simple = function(cache = BiocFileCache::BiocFileCache(),
 #' @note Provenance information is kept in the form
 #' of excerpts of top records in `dir(system.file("obo", package="ontoProc"), full=TRUE)`
 #' @export
-getCellOnto = function(useNew=TRUE, newest=FALSE, cache=BiocFileCache::BiocFileCache())  {
+getCellOnto = function(useNew=TRUE, newest=FALSE, cache=BiocFileCache::BiocFileCache(),
+    use0718=FALSE)  {
     if (newest) {
      qu = BiocFileCache::bfcquery(cache, "cl-simple")
      if (nrow(qu) == 0) {
@@ -35,7 +38,7 @@ getCellOnto = function(useNew=TRUE, newest=FALSE, cache=BiocFileCache::BiocFileC
      return(ontologyIndex::get_OBO(qu$fpath[1], extract_tags="everything"))
     }
     sfstr = "ontoRda/cellOnto.rda"
-    if (useNew) sfstr = "ontoRda/co_0718.rda"
+    if (use0718) sfstr = "ontoRda/co_0718.rda"
     get(load(system.file(
       sfstr, package="ontoProc")))
     }
