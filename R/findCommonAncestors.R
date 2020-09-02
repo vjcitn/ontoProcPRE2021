@@ -10,7 +10,7 @@
 #'
 #' @return A \linkS4class{DataFrame} where each row corresponds to a common ancestor term.
 #' This contains the columns \code{number}, the number of descendent terms across all vectors in \code{...};
-#' and \code{descendents}, a \linkS4class{DataFrameList} specifying the identities of the descendents.
+#' and \code{descendents}, a \linkS4class{List} of DataFrames containing the identities of the descendents.
 #' It may also contain the column \code{description}, containing the description for each term.
 #' 
 #' @details
@@ -45,7 +45,7 @@
 #' @export 
 #' @author Aaron Lun
 #' @importFrom igraph subcomponent
-#' @importFrom S4Vectors DataFrame
+#' @importFrom S4Vectors DataFrame List
 findCommonAncestors <- function(..., g, remove.self=TRUE, descriptions=NULL) {
     terms <- list(...)
     if (is.null(names(terms))) {
